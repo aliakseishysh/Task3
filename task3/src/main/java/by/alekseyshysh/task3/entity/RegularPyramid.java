@@ -12,9 +12,11 @@ public class RegularPyramid extends Figure {
 	private double height;
 
 	public RegularPyramid() {
+		super();
 	}
 
 	public RegularPyramid(RegularPolygon base, double height) {
+		super(RegularPyramid.class.getName());
 		this.base = base;
 		this.height = height;
 	}

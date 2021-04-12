@@ -1,23 +1,26 @@
 package by.alekseyshysh.task3.entity;
 
+import by.alekseyshysh.task3.util.IdGenerator;
+
 public abstract class Figure {
 
-	private int id;
+	private long id;
 	private String name;
 	
 	protected Figure() {
+		this.id = IdGenerator.generateNextId();
 	}
 	
-	protected Figure(int id, String name) {
-		this.id = id;
+	protected Figure(String name) {
+		this.id = IdGenerator.generateNextId();
 		this.name = name;
 	}
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
