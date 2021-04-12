@@ -12,6 +12,11 @@ public class RegularPyramidParameter {
 		this.sideFacesArea = sideFacesArea;
 		this.volume = volume;
 	}
+	
+	public RegularPyramidParameter(RegularPyramidParameter parameter) {
+		this.sideFacesArea = parameter.sideFacesArea;
+		this.volume = parameter.volume;
+	}
 
 	public double getSideFacesArea() {
 		return sideFacesArea;

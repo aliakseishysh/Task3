@@ -12,6 +12,11 @@ public class RegularPolygonParameter {
 		this.area = area;
 		this.perimeter = perimeter;
 	}
+	
+	public RegularPolygonParameter(RegularPolygonParameter parameter) {
+		this.area = parameter.area;
+		this.perimeter = parameter.perimeter;
+	}
 
 	public double getArea() {
 		return area;

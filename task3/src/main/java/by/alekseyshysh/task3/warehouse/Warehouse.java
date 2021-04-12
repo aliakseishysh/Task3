@@ -3,6 +3,8 @@ package by.alekseyshysh.task3.warehouse;
 import java.util.HashMap;
 import java.util.Map;
 
+import by.alekseyshysh.task3.exception.FiguresException;
+
 public class Warehouse {
 
 	// TODO implement class
@@ -22,6 +24,22 @@ public class Warehouse {
 
 	public static Warehouse getInstance() {
 		return instance;
+	}
+	
+	public RegularPolygonParameter getRegularPolygonParameter(long id) throws FiguresException {
+		RegularPolygonParameter parameter = instance.regularPolygonMap.get(id);
+		if (parameter == null) {
+			throw new FiguresException("No such element with id: " + id);
+		}
+		return new RegularPolygonParameter(parameter);
+	}
+	
+	public RegularPyramidParameter getRegularPyramidParameter(long id) throws FiguresException {
+		RegularPyramidParameter parameter = instance.regularPyramidMap.get(id);
+		if (parameter == null) {
+			throw new FiguresException("No such element with id: " + id);
+		}
+		return new RegularPyramidParameter(parameter);
 	}
 
 	public void putParametersRegularPyramid(long id, double area, double perimeter) {
