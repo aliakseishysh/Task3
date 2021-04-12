@@ -2,28 +2,28 @@ package by.alekseyshysh.task3.warehouse;
 
 public class RegularPyramidParameter {
 
-	double sideFacesArea;
+	double surfaceArea;
 	double volume;
 	
 	public RegularPyramidParameter() {
 	}
 	
 	public RegularPyramidParameter(double sideFacesArea, double volume) {
-		this.sideFacesArea = sideFacesArea;
+		this.surfaceArea = sideFacesArea;
 		this.volume = volume;
 	}
 	
 	public RegularPyramidParameter(RegularPyramidParameter parameter) {
-		this.sideFacesArea = parameter.sideFacesArea;
+		this.surfaceArea = parameter.surfaceArea;
 		this.volume = parameter.volume;
 	}
 
 	public double getSideFacesArea() {
-		return sideFacesArea;
+		return surfaceArea;
 	}
 
 	public void setSideFacesArea(double sideFacesArea) {
-		this.sideFacesArea = sideFacesArea;
+		this.surfaceArea = sideFacesArea;
 	}
 
 	public double getVolume() {
@@ -39,7 +39,7 @@ public class RegularPyramidParameter {
 		final int prime = 31;
 		int result = 1;
 		long temp;
-		temp = Double.doubleToLongBits(sideFacesArea);
+		temp = Double.doubleToLongBits(surfaceArea);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		temp = Double.doubleToLongBits(volume);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
@@ -55,7 +55,7 @@ public class RegularPyramidParameter {
 			return false;
 		}
 		RegularPyramidParameter other = (RegularPyramidParameter) obj;
-		boolean result = sideFacesArea == other.sideFacesArea && volume == other.volume;
+		boolean result = surfaceArea == other.surfaceArea && volume == other.volume;
 		return result;
 	}
 
@@ -63,7 +63,7 @@ public class RegularPyramidParameter {
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
 		builder.append("RegularPyramidParameter [sideFacesArea=");
-		builder.append(sideFacesArea);
+		builder.append(surfaceArea);
 		builder.append(", volume=");
 		builder.append(volume);
 		builder.append("]");

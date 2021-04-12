@@ -4,7 +4,7 @@ import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.service.PyramidCalculationService;
 
-public class PyramidCalculationSerivceImpl implements PyramidCalculationService {
+public class PyramidCalculationServiceImpl implements PyramidCalculationService {
 
 	/*
 	 * Для задач 4-8. Cекущие плоскости, фигуры и основания следует ориентировать в
