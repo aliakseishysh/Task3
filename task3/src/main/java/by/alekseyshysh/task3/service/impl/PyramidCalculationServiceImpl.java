@@ -11,6 +11,19 @@ public class PyramidCalculationServiceImpl implements PyramidCalculationService 
 	 * пространстве параллельно осям и плоскостям координат,чтобы формулы вычисления
 	 * сечений и параметров фигур не были слишком сложными.
 	 */
+	
+	@Override
+	public double calculatePerimeter(RegularPyramid regularPyramid) {
+		RegularPolygon polygon = regularPyramid.getBase();
+		int sidesCount = polygon.getSideCount();
+		double sideLength = polygon.getSideLength();
+		double radius = calulateInscribedCircleRadius(sidesCount, sideLength);
+		double height = regularPyramid.getHeight();
+		double edge = Math.hypot(radius, height);
+		double perimeter = sidesCount * (sideLength + edge);
+		return perimeter;
+		
+	}
 
 	@Override
 	public double calculateSurfaceArea(RegularPyramid pyramid) {

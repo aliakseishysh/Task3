@@ -1,6 +1,6 @@
 package by.alekseyshysh.task3.entity;
 
-public class RegularPyramid extends Figure {
+public class RegularPyramid extends AbstractFigure {
 
 	// polygon center - sides count - sides length - apex
 	// (0.0, 0.0, 0.0) - 4 - 1.0 - 5.0

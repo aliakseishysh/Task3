@@ -1,6 +1,6 @@
 package by.alekseyshysh.task3.factory;
 
-import by.alekseyshysh.task3.entity.Figure;
+import by.alekseyshysh.task3.entity.AbstractFigure;
 import by.alekseyshysh.task3.entity.Point;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
@@ -12,7 +12,7 @@ public class FigureFactory {
 	private FigureFactory() {
 	}
 
-	public static Figure newInstance(String line) throws FiguresException {
+	public static AbstractFigure newInstance(String line) throws FiguresException {
 		String[] figureInfo = line.split(":");
 		switch (figureInfo[0]) {
 		case ("RegularPolygon"):
@@ -26,7 +26,7 @@ public class FigureFactory {
 		}
 	}
 	
-	private static Figure createRegularPolygon(String[] polygonInfo) {
+	private static AbstractFigure createRegularPolygon(String[] polygonInfo) {
 		String[] pointInfo = polygonInfo[0].split(",");
 		Point point = new Point(Double.parseDouble(pointInfo[0]), Double.parseDouble(pointInfo[1]),
 				Double.parseDouble(pointInfo[2]));
@@ -35,7 +35,7 @@ public class FigureFactory {
 		return new RegularPolygon(point, sidesCount, sideLength);
 	}
 	
-	private static Figure createRegularPyramid(String[] regularPyramidInfo) throws FiguresException {
+	private static AbstractFigure createRegularPyramid(String[] regularPyramidInfo) throws FiguresException {
 		StringBuilder builder = new StringBuilder("RegularPolygon:");
 		builder.append(regularPyramidInfo[0]);
 		builder.append(";");

@@ -2,7 +2,7 @@ package by.alekseyshysh.task3.observer;
 
 import java.util.EventObject;
 
-import by.alekseyshysh.task3.entity.Figure;
+import by.alekseyshysh.task3.entity.AbstractFigure;
 
 public class FigureEvent extends EventObject {
 
@@ -11,7 +11,7 @@ public class FigureEvent extends EventObject {
 	}
 	
 	@Override
-	public Figure getSource() {
-		return (Figure) super.getSource();
+	public AbstractFigure getSource() {
+		return (AbstractFigure) super.getSource();
 	}
 }

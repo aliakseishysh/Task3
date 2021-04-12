@@ -4,7 +4,7 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.alekseyshysh.task3.entity.Figure;
+import by.alekseyshysh.task3.entity.AbstractFigure;
 import by.alekseyshysh.task3.entity.Point;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
@@ -23,17 +23,17 @@ public class PyramidConfirmationServiceImpl implements PyramidConfirmationServic
 
 	// switch here for future extensibility
 	@Override
-	public boolean confirmShapeType(Figure figure, String figureName) {
+	public boolean confirmShapeType(AbstractFigure abstractFigure, String figureName) {
 		// RegularPolygon.sideCount >= 3
 		// RegularPolygon.sideLength > 0
 		// apex > 0 | apex < 0
 		boolean result = false;
-		if (figure != null) {
-			String className = figure.getClass().getName();
+		if (abstractFigure != null) {
+			String className = abstractFigure.getClass().getName();
 			switch (className) {
 			case ("RegularPyramid"):
 				if (className.equals(figureName)) {
-					RegularPyramid pyramid = (RegularPyramid) figure;
+					RegularPyramid pyramid = (RegularPyramid) abstractFigure;
 					RegularPolygon base = pyramid.getBase();
 					double height = pyramid.getHeight();
 					result = FigureShapeValidator.isRegularPyramidCorrect(base, height);

@@ -2,6 +2,7 @@ package by.alekseyshysh.task3.warehouse;
 
 public class RegularPyramidParameter {
 
+	double perimeter;
 	double surfaceArea;
 	double volume;
 	
@@ -32,6 +33,14 @@ public class RegularPyramidParameter {
 
 	public void setVolume(double volume) {
 		this.volume = volume;
+	}
+
+	public double getPerimeter() {
+		return perimeter;
+	}
+
+	public void setPerimeter(double perimeter) {
+		this.perimeter = perimeter;
 	}
 
 	@Override

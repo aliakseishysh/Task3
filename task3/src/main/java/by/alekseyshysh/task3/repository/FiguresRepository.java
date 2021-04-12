@@ -6,51 +6,51 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
-import by.alekseyshysh.task3.entity.Figure;
+import by.alekseyshysh.task3.entity.AbstractFigure;
 
 public class FiguresRepository {
 
-	private List<Figure> figures;
+	private List<AbstractFigure> abstractFigures;
 
-	public boolean add(Figure figure) {
-		return figures.add(figure);
+	public boolean add(AbstractFigure abstractFigure) {
+		return abstractFigures.add(abstractFigure);
 	}
 
-	public boolean addAll(Collection<? extends Figure> collection) {
-		return figures.addAll(collection);
+	public boolean addAll(Collection<? extends AbstractFigure> collection) {
+		return abstractFigures.addAll(collection);
 	}
 
-	public boolean remove(Figure figure) {
-		return figures.remove(figure);
+	public boolean remove(AbstractFigure abstractFigure) {
+		return abstractFigures.remove(abstractFigure);
 	}
 
 	public boolean removeAll(Collection<?> collection) {
-		return figures.removeAll(collection);
+		return abstractFigures.removeAll(collection);
 	}
 
-	public Figure get(int index) {
-		return figures.get(index);
+	public AbstractFigure get(int index) {
+		return abstractFigures.get(index);
 	}
 
-	public Figure set(int index, Figure figure) {
-		return figures.set(index, figure);
+	public AbstractFigure set(int index, AbstractFigure abstractFigure) {
+		return abstractFigures.set(index, abstractFigure);
 	}
 
-	public List<Figure> queryStream(Specification specification) {
+	public List<AbstractFigure> queryStream(Specification specification) {
 		// TODO replace collect with something new
-		List<Figure> list = figures.stream().filter(figure -> specification.specify(figure)).collect(Collectors.toList());
+		List<AbstractFigure> list = abstractFigures.stream().filter(figure -> specification.specify(figure)).collect(Collectors.toList());
 		return list;
 	}
 	
-	public List<Figure> queryStream(Predicate<Figure> specification) {
-		List<Figure> list = figures.stream().filter(figure -> specification.test(figure)).collect(Collectors.toList());
+	public List<AbstractFigure> queryStream(Predicate<AbstractFigure> specification) {
+		List<AbstractFigure> list = abstractFigures.stream().filter(figure -> specification.test(figure)).collect(Collectors.toList());
 		return list;
 	}
 	
 	// TODO add comparator
 	// TODO sort by: id, name, and others
-	public List<Figure> sort() {
-		List<Figure> list = new ArrayList<>(figures).stream().sorted(null).collect(Collectors.toList());
+	public List<AbstractFigure> sort() {
+		List<AbstractFigure> list = new ArrayList<>(abstractFigures).stream().sorted(null).collect(Collectors.toList());
 		return list;
 	}
 

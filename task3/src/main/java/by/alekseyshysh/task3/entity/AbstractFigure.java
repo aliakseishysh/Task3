@@ -2,16 +2,16 @@ package by.alekseyshysh.task3.entity;
 
 import by.alekseyshysh.task3.util.IdGenerator;
 
-public abstract class Figure {
+public abstract class AbstractFigure {
 
 	private long id;
 	private String name;
 	
-	protected Figure() {
+	protected AbstractFigure() {
 		this.id = IdGenerator.generateNextId();
 	}
 	
-	protected Figure(String name) {
+	protected AbstractFigure(String name) {
 		this.id = IdGenerator.generateNextId();
 		this.name = name;
 	}

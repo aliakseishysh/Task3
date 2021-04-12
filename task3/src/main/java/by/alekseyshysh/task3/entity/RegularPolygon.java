@@ -1,6 +1,6 @@
 package by.alekseyshysh.task3.entity;
 
-public class RegularPolygon extends Figure {
+public class RegularPolygon extends AbstractFigure {
 
 	private Point center;
 	// sideCount >= 3
