@@ -23,4 +23,8 @@ public class Warehouse {
 		return instance;
 	}
 	
+	public void putParameters(long id, double area, double perimeter) {
+		
+	}
+	
 }
