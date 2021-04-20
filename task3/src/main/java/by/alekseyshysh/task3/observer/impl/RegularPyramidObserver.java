@@ -19,16 +19,17 @@ public class RegularPyramidObserver extends FigureObserver {
 	public void parameterChanged(FigureEvent event) {
 		RegularPyramid figure = (RegularPyramid) event.getSource();
 		PyramidCalculationService calculationService = new PyramidCalculationServiceImpl();
+		double perimeter = calculationService.calculatePerimeter(figure);
 		double surfaceArea = calculationService.calculateSurfaceArea(figure);
 		double volume = calculationService.calculateVolume(figure);
 		long id = figure.getId();
 		Warehouse warehouse = Warehouse.getInstance();
 		try {
-			warehouse.updateParametersRegularPyramid(id, surfaceArea, volume);
+			warehouse.updateParametersRegularPyramid(id, perimeter, surfaceArea, volume);
 		} catch (FiguresException e) {
 			logger.log(Level.ERROR, e);
 		}
-		
+		logger.log(Level.DEBUG, figure);
 	}
 	
 }

@@ -25,6 +25,7 @@ public class RegularPolygon extends AbstractFigure {
 
 	public void setCenter(Point center) {
 		this.center = center;
+		notifyObservers();
 	}
 
 	public int getSideCount() {
@@ -33,6 +34,7 @@ public class RegularPolygon extends AbstractFigure {
 
 	public void setSideCount(int sideCount) {
 		this.sideCount = sideCount;
+		notifyObservers();
 	}
 
 	public double getSideLength() {
@@ -41,6 +43,7 @@ public class RegularPolygon extends AbstractFigure {
 
 	public void setSideLength(double sideLength) {
 		this.sideLength = sideLength;
+		notifyObservers();
 	}
 
 	@Override

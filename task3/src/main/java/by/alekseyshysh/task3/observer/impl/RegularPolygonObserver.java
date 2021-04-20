@@ -14,6 +14,7 @@ public class RegularPolygonObserver extends FigureObserver {
 	@Override
 	public void parameterChanged(FigureEvent event) {
 		RegularPolygon figure = (RegularPolygon) event.getSource();
+		logger.log(Level.DEBUG, figure);
 		// TODO create RegularPolygonCalculationService
 	}
 	

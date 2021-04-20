@@ -5,7 +5,7 @@ import java.util.List;
 
 import by.alekseyshysh.task3.exception.FiguresException;
 
-public interface ShapeReader {
+public interface FigureReader {
 
 	public Path createPathFromRelative(String relativeFilePath) throws FiguresException;
 

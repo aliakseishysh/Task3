@@ -3,16 +3,17 @@ package by.alekseyshysh.task3.factory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import by.alekseyshysh.task3.entity.FigureFactory;
 import by.alekseyshysh.task3.entity.Point;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.exception.FiguresException;
-import by.alekseyshysh.task3.reader.ShapeReader;
-import by.alekseyshysh.task3.reader.impl.ShapeReaderImpl;
+import by.alekseyshysh.task3.reader.FigureReader;
+import by.alekseyshysh.task3.reader.impl.FigureReaderImpl;
 
 public class FigureFactoryTest {
 
-	private ShapeReader shapeReader = new ShapeReaderImpl();
+	private FigureReader figureReader = new FigureReaderImpl();
 
 	@Test
 	public void factoryRegularPyramidTest() throws FiguresException {

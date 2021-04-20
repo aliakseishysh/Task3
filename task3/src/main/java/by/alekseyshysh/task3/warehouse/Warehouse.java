@@ -34,8 +34,9 @@ public class Warehouse {
 		return new RegularPyramidParameter(parameter);
 	}
 
-	public void putParametersRegularPyramid(long id, double sideFacesArea, double volume) {
+	public void putParametersRegularPyramid(long id, double perimeter, double sideFacesArea, double volume) {
 		RegularPyramidParameter parameter = new RegularPyramidParameter();
+		parameter.setPerimeter(perimeter);
 		parameter.setSideFacesArea(sideFacesArea);
 		parameter.setVolume(volume);
 		instance.regularPyramidMap.put(id, parameter);
@@ -48,11 +49,12 @@ public class Warehouse {
 		instance.regularPolygonMap.put(id, parameter);
 	}
 
-	public void updateParametersRegularPyramid(long id, double sideFacesArea, double volume) throws FiguresException {
+	public void updateParametersRegularPyramid(long id, double perimeter, double sideFacesArea, double volume) throws FiguresException {
 		RegularPyramidParameter parameter = regularPyramidMap.get(id);
 		if (parameter == null) {
 			throw new FiguresException("No such element with id: " + id);
 		}
+		parameter.setPerimeter(perimeter);
 		parameter.setSideFacesArea(sideFacesArea);
 		parameter.setVolume(volume);
 	}

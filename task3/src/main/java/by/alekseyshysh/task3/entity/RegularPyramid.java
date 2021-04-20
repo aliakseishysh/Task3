@@ -31,14 +31,16 @@ public class RegularPyramid extends AbstractFigure {
 
 	public void setBase(RegularPolygon base) {
 		this.base = base;
+		notifyObservers();
 	}
 
 	public double getHeight() {
 		return height;
 	}
 
-	public void setApex(double height) {
+	public void setHeight(double height) {
 		this.height = height;
+		notifyObservers();
 	}
 
 	@Override

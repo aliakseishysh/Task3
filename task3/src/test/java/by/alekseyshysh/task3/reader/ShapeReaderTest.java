@@ -8,16 +8,16 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import by.alekseyshysh.task3.exception.FiguresException;
-import by.alekseyshysh.task3.reader.impl.ShapeReaderImpl;
+import by.alekseyshysh.task3.reader.impl.FigureReaderImpl;
 
 public class ShapeReaderTest {
 
-	private ShapeReader shapeReader = new ShapeReaderImpl();
+	private FigureReader figureReader = new FigureReaderImpl();
 
 	@Test
 	public void readAllCorrectLinesTest() throws FiguresException {
-		Path path = shapeReader.createPathFromRelative("/data/data.txt");
-		List<String> actualList = shapeReader.readAllCorrectLines(path);
+		Path path = figureReader.createPathFromRelative("/data/data.txt");
+		List<String> actualList = figureReader.readAllCorrectLines(path);
 		List<String> expectedList = new ArrayList<String>() {
 			{
 				add("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0");

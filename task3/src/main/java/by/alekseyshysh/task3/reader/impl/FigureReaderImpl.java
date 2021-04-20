@@ -18,7 +18,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.exception.FiguresException;
-import by.alekseyshysh.task3.reader.ShapeReader;
+import by.alekseyshysh.task3.reader.FigureReader;
 import by.alekseyshysh.task3.validator.FigureFileValidator;
 
 /**
@@ -26,7 +26,7 @@ import by.alekseyshysh.task3.validator.FigureFileValidator;
  * @author AlekseyShysh
  *
  */
-public class ShapeReaderImpl implements ShapeReader {
+public class FigureReaderImpl implements FigureReader {
 
 	private static Logger rootLogger = LogManager.getLogger();
 	
