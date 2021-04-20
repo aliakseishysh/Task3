@@ -3,48 +3,42 @@ package by.alekseyshysh.task3.service.impl;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.service.PyramidCalculationService;
+import by.alekseyshysh.task3.service.RegularPolygonCalculationService;
 
 public class PyramidCalculationServiceImpl implements PyramidCalculationService {
 
-	/*
-	 * Для задач 4-8. Cекущие плоскости, фигуры и основания следует ориентировать в
-	 * пространстве параллельно осям и плоскостям координат,чтобы формулы вычисления
-	 * сечений и параметров фигур не были слишком сложными.
-	 */
-	
 	@Override
 	public double calculatePerimeter(RegularPyramid regularPyramid) {
+		RegularPolygonCalculationService regularPolygonCalculationService = new RegularPolygonCalculationServiceImpl();
 		RegularPolygon polygon = regularPyramid.getBase();
-		int sidesCount = polygon.getSideCount();
-		double sideLength = polygon.getSideLength();
-		double radius = calulateInscribedCircleRadius(sidesCount, sideLength);
+		double radius = regularPolygonCalculationService.calulateInscribedCircleRadius(polygon);
 		double height = regularPyramid.getHeight();
 		double edge = Math.hypot(radius, height);
-		double perimeter = sidesCount * (sideLength + edge);
+		double basePerimeter = regularPolygonCalculationService.calculatePerimeter(polygon);
+		int sidesCount = polygon.getSideCount();
+		double perimeter = basePerimeter + sidesCount * edge;
 		return perimeter;
-		
+
 	}
 
 	@Override
 	public double calculateSurfaceArea(RegularPyramid pyramid) {
+		RegularPolygonCalculationService regularPolygonCalculationService = new RegularPolygonCalculationServiceImpl();
 		RegularPolygon polygon = pyramid.getBase();
-		int sidesCount = polygon.getSideCount();
-		double sideLength = polygon.getSideLength();
-		double baseArea = calculateRegularPolygonArea(sidesCount, sideLength);
+		double baseArea = regularPolygonCalculationService.calculateArea(polygon);
 		double height = pyramid.getHeight();
-		double radius = calulateInscribedCircleRadius(sidesCount, sideLength);
+		double radius = regularPolygonCalculationService.calulateInscribedCircleRadius(polygon);
 		double apothem = calculateRegularPyramidApothem(height, radius);
-		double perimeter = calculateRegularPolygonPerimeter(sideLength, sidesCount);
+		double perimeter = regularPolygonCalculationService.calculatePerimeter(polygon);
 		double resultArea = baseArea + calculateRegularPyramidSideFacesArea(apothem, perimeter);
 		return resultArea;
 	}
 
 	@Override
 	public double calculateVolume(RegularPyramid pyramid) {
+		RegularPolygonCalculationService regularPolygonCalculationService = new RegularPolygonCalculationServiceImpl();
 		RegularPolygon polygon = pyramid.getBase();
-		int sidesCount = polygon.getSideCount();
-		double sideLength = polygon.getSideLength();
-		double baseArea = calculateRegularPolygonArea(sidesCount, sideLength);
+		double baseArea = regularPolygonCalculationService.calculateArea(polygon);
 		double height = pyramid.getHeight();
 		double resultVolume = calculateRegularPyramidVolume(baseArea, height);
 		return resultVolume;
@@ -56,8 +50,9 @@ public class PyramidCalculationServiceImpl implements PyramidCalculationService 
 		RegularPolygon polygon = pyramid.getBase();
 		double heightUp = pyramid.getHeight() - heightDown;
 		double volumePyramidFull = calculateVolume(pyramid);
-		double areaUp = calculateTruncatedPyramidUpperBaseArea(
-				calculateRegularPolygonArea(polygon.getSideCount(), polygon.getSideLength()), heightDown, heightUp);
+		RegularPolygonCalculationService regularPolygonCalculationService = new RegularPolygonCalculationServiceImpl();
+		double areaUp = calculateTruncatedPyramidUpperBaseArea(regularPolygonCalculationService.calculateArea(polygon),
+				heightDown, heightUp);
 		double volumeUp = calculateRegularPyramidVolume(areaUp, heightUp);
 		double volumeDown = volumePyramidFull - volumeUp;
 		double ratio = volumeUp / volumeDown;
@@ -69,24 +64,9 @@ public class PyramidCalculationServiceImpl implements PyramidCalculationService 
 		return upArea;
 	}
 
-	private double calculateRegularPolygonArea(int sidesCount, double sideLength) {
-		double area = sidesCount * Math.sqrt(sideLength) / 4 / Math.tan((double) 180 / sidesCount);
-		return area;
-	}
-
-	private double calulateInscribedCircleRadius(int sidesCount, double sideLength) {
-		double radius = sideLength / 2 / Math.tan((double) 180 / sidesCount);
-		return radius;
-	}
-
 	private double calculateRegularPyramidApothem(double height, double radius) {
 		double apothem = Math.hypot(height, radius);
 		return apothem;
-	}
-
-	private double calculateRegularPolygonPerimeter(double sideLength, int sidesCount) {
-		double perimeter = sideLength * sidesCount;
-		return perimeter;
 	}
 
 	private double calculateRegularPyramidSideFacesArea(double apothem, double perimeter) {

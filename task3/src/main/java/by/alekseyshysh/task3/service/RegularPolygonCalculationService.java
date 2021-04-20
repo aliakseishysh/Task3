@@ -4,6 +4,10 @@ import by.alekseyshysh.task3.entity.RegularPolygon;
 
 public interface RegularPolygonCalculationService {
 
-	public double calculatePerimeter(RegularPolygon polygon);
+	double calculatePerimeter(RegularPolygon polygon);
+	
+	double calculateArea(RegularPolygon polygon);
+
+	double calulateInscribedCircleRadius(RegularPolygon polygon); 
 	
 }
