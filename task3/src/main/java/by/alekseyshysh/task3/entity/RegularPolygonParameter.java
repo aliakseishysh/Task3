@@ -1,4 +1,4 @@
-package by.alekseyshysh.task3.warehouse;
+package by.alekseyshysh.task3.entity;
 
 public class RegularPolygonParameter {
 	

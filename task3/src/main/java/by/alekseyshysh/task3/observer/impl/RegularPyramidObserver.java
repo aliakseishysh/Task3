@@ -5,11 +5,11 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.RegularPyramid;
+import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
 import by.alekseyshysh.task3.service.PyramidCalculationService;
 import by.alekseyshysh.task3.service.impl.PyramidCalculationServiceImpl;
-import by.alekseyshysh.task3.warehouse.Warehouse;
 
 public class RegularPyramidObserver extends FigureObserver {
 

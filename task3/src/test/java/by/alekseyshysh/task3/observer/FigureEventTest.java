@@ -5,12 +5,12 @@ import org.testng.annotations.Test;
 
 import by.alekseyshysh.task3.entity.FigureFactory;
 import by.alekseyshysh.task3.entity.RegularPyramid;
+import by.alekseyshysh.task3.entity.RegularPyramidParameter;
+import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.impl.RegularPyramidObserver;
 import by.alekseyshysh.task3.service.PyramidCalculationService;
 import by.alekseyshysh.task3.service.impl.PyramidCalculationServiceImpl;
-import by.alekseyshysh.task3.warehouse.RegularPyramidParameter;
-import by.alekseyshysh.task3.warehouse.Warehouse;
 
 public class FigureEventTest {
 

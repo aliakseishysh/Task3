@@ -9,11 +9,32 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.repository.FiguresRepository;
 import by.alekseyshysh.task3.repository.Specification;
 
-public class FiguresRepositoryImpl {
-
-	private List<AbstractFigure> figures;
+public class FiguresRepositoryImpl implements FiguresRepository {
+	
+	private static final FiguresRepository instance = new FiguresRepositoryImpl();
+ 	private final List<AbstractFigure> figures = new ArrayList<>();
+ 	
+ 	private FiguresRepositoryImpl() {
+ 	}
+ 	
+ 	public static FiguresRepository getInstance() {
+ 		return instance;
+ 	}
+ 	
+ 	public int size() {
+ 		return figures.size();
+ 	}
+ 	
+ 	public boolean isEmpty() {
+ 		return figures.isEmpty();
+ 	}
+ 	
+ 	public boolean contains(AbstractFigure figure) {
+ 		return figures.contains(figure);
+ 	}
 
 	public boolean add(AbstractFigure figure) {
 		return figures.add(figure);
@@ -29,6 +50,10 @@ public class FiguresRepositoryImpl {
 
 	public boolean removeAll(Collection<?> collection) {
 		return figures.removeAll(collection);
+	}
+	
+	public void clear() {
+		figures.clear();
 	}
 
 	public AbstractFigure get(int index) {

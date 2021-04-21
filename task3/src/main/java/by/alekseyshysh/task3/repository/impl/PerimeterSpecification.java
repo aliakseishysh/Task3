@@ -6,12 +6,12 @@ import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
 import by.alekseyshysh.task3.entity.RegularPolygon;
+import by.alekseyshysh.task3.entity.RegularPolygonParameter;
 import by.alekseyshysh.task3.entity.RegularPyramid;
+import by.alekseyshysh.task3.entity.RegularPyramidParameter;
+import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.Specification;
-import by.alekseyshysh.task3.warehouse.RegularPolygonParameter;
-import by.alekseyshysh.task3.warehouse.RegularPyramidParameter;
-import by.alekseyshysh.task3.warehouse.Warehouse;
 
 public class PerimeterSpecification implements Specification {
 	

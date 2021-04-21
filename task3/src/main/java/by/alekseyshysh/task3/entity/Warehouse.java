@@ -1,4 +1,4 @@
-package by.alekseyshysh.task3.warehouse;
+package by.alekseyshysh.task3.entity;
 
 import java.util.HashMap;
 import java.util.Map;
