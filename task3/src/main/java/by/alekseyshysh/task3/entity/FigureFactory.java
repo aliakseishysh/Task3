@@ -15,12 +15,12 @@ public class FigureFactory {
 	public static AbstractFigure newInstance(String line) throws FiguresException {
 		String[] figureInfo = line.split(COLON);
 		switch (figureInfo[0]) {
+		case ("RegularPyramid"):
+			String[] regularPyramidInfo = figureInfo[1].split(SEMICOLON);
+		return createRegularPyramid(regularPyramidInfo);
 		case ("RegularPolygon"):
 			String[] polygonInfo = figureInfo[1].split(SEMICOLON);
 			return createRegularPolygon(polygonInfo);
-		case ("RegularPyramid"):
-			String[] regularPyramidInfo = figureInfo[1].split(SEMICOLON);
-			return createRegularPyramid(regularPyramidInfo);
 		default:
 			throw new FiguresException("No such figure: " + line);
 		}

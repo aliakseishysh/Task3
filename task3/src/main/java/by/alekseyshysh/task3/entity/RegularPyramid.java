@@ -2,12 +2,6 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPyramid extends AbstractFigure {
 
-	// polygon center - sides count - sides length - apex
-	// (0.0, 0.0, 0.0) - 4 - 1.0 - 5.0
-	// (0.0, 0.0, 0.0) - 4 - 1.0 - 5.0
-	/**
-	 * base need to be parallel to plane (x, y)
-	 */
 	private RegularPolygon base;
 	private double height;
 
@@ -21,16 +15,17 @@ public class RegularPyramid extends AbstractFigure {
 		this.height = height;
 	}
 
+	// TODO remove this
 	public Point getCenter() {
 		return base.getCenter();
 	}
 
 	public RegularPolygon getBase() {
-		return base;
+		return new RegularPolygon(base);
 	}
 
 	public void setBase(RegularPolygon base) {
-		this.base = base;
+		this.base = new RegularPolygon(base);
 		notifyObservers();
 	}
 

@@ -3,9 +3,7 @@ package by.alekseyshysh.task3.entity;
 public class RegularPolygon extends AbstractFigure {
 
 	private Point center;
-	// sideCount >= 3
 	private int sideCount;
-	// sideLength > 0
 	private double sideLength;
 
 	public RegularPolygon() {
@@ -17,6 +15,13 @@ public class RegularPolygon extends AbstractFigure {
 		this.center = center;
 		this.sideCount = sideCount;
 		this.sideLength = sideLength;
+	}
+
+	public RegularPolygon(RegularPolygon base) {
+		super(RegularPolygon.class.getName());
+		this.center = base.center;
+		this.sideCount = base.sideCount;
+		this.sideLength = base.sideLength;
 	}
 
 	public Point getCenter() {
@@ -58,15 +63,13 @@ public class RegularPolygon extends AbstractFigure {
 		return result;
 	}
 
+	// TODO create normal null check
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
+		if (obj == null || getClass() != obj.getClass()) {
 			return false;
 		}
 		RegularPolygon other = (RegularPolygon) obj;
@@ -74,13 +77,7 @@ public class RegularPolygon extends AbstractFigure {
 			if (other.center != null) {
 				return false;
 			}
-		} else if (!center.equals(other.center)) {
-			return false;
-		}
-		if (sideCount != other.sideCount) {
-			return false;
-		}
-		if (sideLength != other.sideLength) {
+		} else if (!center.equals(other.center) || sideCount != other.sideCount || sideLength != other.sideLength) {
 			return false;
 		}
 		return true;
