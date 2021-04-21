@@ -38,20 +38,20 @@ public class FiguresRepositoryImpl {
 	public AbstractFigure set(int index, AbstractFigure figure) {
 		return figures.set(index, figure);
 	}
-	
+
 	public List<AbstractFigure> query(Specification specification) {
 		List<AbstractFigure> list = new ArrayList<>();
-		for (AbstractFigure figure: figures) {
+		for (AbstractFigure figure : figures) {
 			if (specification.specify(figure)) {
 				list.add(figure);
 			}
 		}
 		return list;
 	}
-	
+
 	public List<AbstractFigure> query(Predicate<AbstractFigure> specification) {
 		List<AbstractFigure> list = new ArrayList<>();
-		for (AbstractFigure figure: figures) {
+		for (AbstractFigure figure : figures) {
 			if (specification.test(figure)) {
 				list.add(figure);
 			}
@@ -60,40 +60,20 @@ public class FiguresRepositoryImpl {
 	}
 
 	public List<AbstractFigure> queryStream(Specification specification) {
-		List<AbstractFigure> list = figures.stream().filter(figure -> specification.specify(figure)).collect(Collectors.toList());
+		List<AbstractFigure> list = figures.stream().filter(specification::specify).collect(Collectors.toList());
 		return list;
 	}
-	
+
 	public List<AbstractFigure> queryStream(Predicate<AbstractFigure> specification) {
-		List<AbstractFigure> list = figures.stream().filter(figure -> specification.test(figure)).collect(Collectors.toList());
+		List<AbstractFigure> list = figures.stream().filter(specification::test).collect(Collectors.toList());
 		return list;
 	}
-	
+
 	public List<AbstractFigure> sort() {
-		Comparator<AbstractFigure> comparator = new Comparator<>() {
-
-			@Override
-			public int compare(AbstractFigure figure1, AbstractFigure figure2) {
-				if (figure1.getId() > figure2.getId()) {
-					return 1;
-				}
-				if (figure1.getId() == figure2.getId()) {
-					if (figure1.getName().compareTo(figure2.getName()) > 0) {
-						return 1;
-					}
-				}
-				return -1;
-			}
-			
-		};
-		List<AbstractFigure> list = new ArrayList<>(figures);
-		Collections.sort(list, comparator);
-		return list;
+		Comparator<AbstractFigure> compareById = Comparator.comparing(AbstractFigure::getId);
+		Comparator<AbstractFigure> compareByName = Comparator.comparing(AbstractFigure::getName);
+		Comparator<AbstractFigure> compareByIdThenName = compareById.thenComparing(compareByName);
+		List<AbstractFigure> result = figures.stream().sorted(compareByIdThenName).collect(Collectors.toList());
+		return result;
 	}
-	
-	public List<AbstractFigure> sortStream() {
-		List<AbstractFigure> list = new ArrayList<>(figures).stream().sorted(null).collect(Collectors.toList());
-		return list;
-	}
-
 }
