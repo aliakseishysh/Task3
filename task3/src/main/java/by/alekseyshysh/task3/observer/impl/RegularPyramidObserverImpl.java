@@ -4,27 +4,28 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.alekseyshysh.task3.entity.RegularPolygon;
+import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
-import by.alekseyshysh.task3.service.RegularPolygonCalculationService;
-import by.alekseyshysh.task3.service.impl.RegularPolygonCalculationServiceImpl;
+import by.alekseyshysh.task3.service.PyramidCalculationService;
+import by.alekseyshysh.task3.service.impl.PyramidCalculationServiceImpl;
 
-public class RegularPolygonObserver extends FigureObserver {
+public class RegularPyramidObserverImpl extends FigureObserverImpl {
 
 	private static Logger logger = LogManager.getRootLogger();
 	
 	@Override
 	public void parameterChanged(FigureEvent event) {
-		RegularPolygon figure = (RegularPolygon) event.getSource();
-		RegularPolygonCalculationService calculationService = new RegularPolygonCalculationServiceImpl();
-		double area = calculationService.calculateArea(figure);
+		RegularPyramid figure = (RegularPyramid) event.getSource();
+		PyramidCalculationService calculationService = new PyramidCalculationServiceImpl();
 		double perimeter = calculationService.calculatePerimeter(figure);
+		double surfaceArea = calculationService.calculateSurfaceArea(figure);
+		double volume = calculationService.calculateVolume(figure);
 		long id = figure.getId();
 		Warehouse warehouse = Warehouse.getInstance();
 		try {
-			warehouse.updateParametersRegularPolygon(id, area, perimeter);
+			warehouse.updateParametersRegularPyramid(id, perimeter, surfaceArea, volume);
 		} catch (FiguresException e) {
 			logger.log(Level.ERROR, e);
 		}

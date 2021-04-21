@@ -1,9 +1,9 @@
 package by.alekseyshysh.task3.observer.impl;
 
 import by.alekseyshysh.task3.observer.FigureEvent;
-import by.alekseyshysh.task3.observer.Observer;
+import by.alekseyshysh.task3.observer.FigureObserver;
 
-public class FigureObserver implements Observer {
+public class FigureObserverImpl implements FigureObserver {
 
 	@Override
 	public void parameterChanged(FigureEvent event) {

@@ -4,15 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 import by.alekseyshysh.task3.observer.FigureEvent;
-import by.alekseyshysh.task3.observer.Observable;
-import by.alekseyshysh.task3.observer.Observer;
+import by.alekseyshysh.task3.observer.FigureObservable;
+import by.alekseyshysh.task3.observer.FigureObserver;
+import by.alekseyshysh.task3.observer.impl.FigureObserverImpl;
 import by.alekseyshysh.task3.util.IdGenerator;
 
-public abstract class AbstractFigure implements Observable {
+public abstract class AbstractFigure implements FigureObservable {
 
 	private long id;
 	private String name;
-	private List<Observer> observers = new ArrayList<>();
+	private List<FigureObserver> figureObservers = new ArrayList<>();
 	
 	protected AbstractFigure() {
 		this.id = IdGenerator.generateNextId();
@@ -41,28 +42,25 @@ public abstract class AbstractFigure implements Observable {
 		notifyObservers();
 	}
 	
-	public List<Observer> getObservers() {
-		return observers;
+	public List<FigureObserver> getObservers() {
+		return figureObservers;
 	}
 
-	public void setObservers(List<Observer> observers) {
-		this.observers = observers;
+	public void setObservers(List<FigureObserver> figureObservers) {
+		figureObservers = figureObservers;
 	}
 
-	public void attach(Observer observer) {
-		this.observers.add(observer);
+	public void attach(FigureObserverImpl observer) {
+		figureObservers.add(observer);
 	}
 	
-	public void detach(Observer observer) {
-		this.observers.remove(observer);
+	public void detach(FigureObserverImpl observer) {
+		figureObservers.remove(observer);
 	}
 	
 	public void notifyObservers() {
-		if (this.observers == null) {
-			return;
-		}
-		for (Observer observer: this.observers) {
-			observer.parameterChanged(new FigureEvent(this));			
+		for (FigureObserver figureObserver: figureObservers) {
+			figureObserver.parameterChanged(new FigureEvent(this));			
 		}
 	}
 	

@@ -94,11 +94,8 @@ public class FiguresRepositoryImpl implements FiguresRepository {
 		return list;
 	}
 
-	public List<AbstractFigure> sort() {
-		Comparator<AbstractFigure> compareById = Comparator.comparing(AbstractFigure::getId);
-		Comparator<AbstractFigure> compareByName = Comparator.comparing(AbstractFigure::getName);
-		Comparator<AbstractFigure> compareByIdThenName = compareById.thenComparing(compareByName);
-		List<AbstractFigure> result = figures.stream().sorted(compareByIdThenName).collect(Collectors.toList());
+	public List<AbstractFigure> sort(Comparator<AbstractFigure> comparator) {
+		List<AbstractFigure> result = figures.stream().sorted(comparator).collect(Collectors.toList());
 		return result;
 	}
 }
