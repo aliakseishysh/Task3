@@ -7,10 +7,10 @@ import org.apache.logging.log4j.Logger;
 import by.alekseyshysh.task3.entity.AbstractFigure;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
-import by.alekseyshysh.task3.service.FigureConfirmationService;
+import by.alekseyshysh.task3.service.RegularFigureConfirmationService;
 import by.alekseyshysh.task3.validator.FigureShapeValidator;
 
-public class FigureConfirmationServiceImpl implements FigureConfirmationService{
+public class RegularFigureConfirmationServiceImpl implements RegularFigureConfirmationService{
 
 	private static Logger logger = LogManager.getRootLogger();
 

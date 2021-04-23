@@ -1,18 +1,31 @@
 package by.alekseyshysh.task3.repository.impl;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.repository.Specification;
 
-public class IdSpecification {
+public class IdSpecification implements Specification {
 
-	private int id;
+	private long minId;
+	private long maxId;
 	
-	public IdSpecification(int id) {
-		this.id = id;
+	public IdSpecification(long minId, long maxId) {
+		this.minId = minId;
+		this.maxId = maxId;
 	}
 	
+	@Override
 	public boolean specify(AbstractFigure abstractFigure) {
-		boolean result = abstractFigure.getId() == id;
+		long currentId = abstractFigure.getId();
+		boolean result = minId <= currentId & currentId <= maxId;
 		return result;
+	}
+
+	/**
+	 * id does not stored in warehouse
+	 */
+	@Override
+	public boolean specifyFromWarehouse(AbstractFigure abstractFigure) {
+		return specify(abstractFigure);
 	}
 	
 }

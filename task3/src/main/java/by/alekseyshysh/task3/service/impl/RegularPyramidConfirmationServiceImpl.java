@@ -2,9 +2,9 @@ package by.alekseyshysh.task3.service.impl;
 
 import by.alekseyshysh.task3.entity.Point;
 import by.alekseyshysh.task3.entity.RegularPyramid;
-import by.alekseyshysh.task3.service.PyramidConfirmationService;
+import by.alekseyshysh.task3.service.RegularPyramidConfirmationService;
 
-public class PyramidConfirmationServiceImpl implements PyramidConfirmationService {
+public class RegularPyramidConfirmationServiceImpl implements RegularPyramidConfirmationService {
 
 	@Override
 	public boolean confirmPyramidBaseOnCordinatePlane(RegularPyramid pyramid) {

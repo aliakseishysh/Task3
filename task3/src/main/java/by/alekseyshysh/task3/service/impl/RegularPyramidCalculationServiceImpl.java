@@ -2,10 +2,10 @@ package by.alekseyshysh.task3.service.impl;
 
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
-import by.alekseyshysh.task3.service.PyramidCalculationService;
+import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
 import by.alekseyshysh.task3.service.RegularPolygonCalculationService;
 
-public class PyramidCalculationServiceImpl implements PyramidCalculationService {
+public class RegularPyramidCalculationServiceImpl implements RegularPyramidCalculationService {
 
 	@Override
 	public double calculatePerimeter(RegularPyramid regularPyramid) {

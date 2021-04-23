@@ -1,4 +1,4 @@
-package by.alekseyshysh.task3.factory;
+package by.alekseyshysh.task3.entity;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -13,14 +13,10 @@ import by.alekseyshysh.task3.reader.impl.FigureReaderImpl;
 
 public class FigureFactoryTest {
 
-	private FigureReader figureReader = new FigureReaderImpl();
-
 	@Test
 	public void factoryRegularPyramidTest() throws FiguresException {
 		RegularPyramid expected = new RegularPyramid(new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0), 5.0);
 		RegularPyramid actual = (RegularPyramid) FigureFactory.newInstance("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0");
-		System.out.println(expected.toString());
-		System.out.println(actual.toString());
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 	
@@ -28,8 +24,6 @@ public class FigureFactoryTest {
 	public void factoryRegularPolygonTest() throws FiguresException {
 		RegularPolygon expected = new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0);
 		RegularPolygon actual = (RegularPolygon) FigureFactory.newInstance("RegularPolygon:0.0,0.0,0.0;4;1.0");
-		System.out.println(expected.toString());
-		System.out.println(actual.toString());
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 }

@@ -10,21 +10,43 @@ import by.alekseyshysh.task3.entity.RegularPyramidParameter;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.Specification;
+import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
+import by.alekseyshysh.task3.service.impl.RegularPyramidCalculationServiceImpl;
 
 public class VolumeSpecification implements Specification {
 
 	private static Logger logger = LogManager.getRootLogger();
 	 
-	private double volume;
+	private double volumeMin;
+	private double volumeMax;
 	
-	public VolumeSpecification(double volume) {
-		this.volume = volume;
+	public VolumeSpecification(double volumeMin, double volumeMax) {
+		this.volumeMin = volumeMin;
+		this.volumeMax = volumeMax;
 	}
 	
 	@Override
 	public boolean specify(AbstractFigure figure) {
+		String className = figure.getClass().getSimpleName();
+		boolean result = false;
+		switch (className) {
+		case "RegularPyramid":
+			RegularPyramid pyramid = (RegularPyramid) figure;
+			RegularPyramidCalculationService pyramidCalculation = new RegularPyramidCalculationServiceImpl();
+			double pyramidVolume = pyramidCalculation.calculateVolume(pyramid);
+			result = volumeMin <= pyramidVolume & pyramidVolume <= volumeMax;
+			break;
+		default:
+			logger.log(Level.ERROR, "No such action for figure: {}", className);
+			break;
+		}
+		return result;
+	}
+	
+	@Override
+	public boolean specifyFromWarehouse(AbstractFigure figure) {
 		Warehouse warehouse = Warehouse.getInstance();
-		String className = figure.getClass().getName();
+		String className = figure.getClass().getSimpleName();
 		long id = -1;
 		boolean result = false;
 		switch(className) {
@@ -34,8 +56,8 @@ public class VolumeSpecification implements Specification {
 				try {
 					pyramid.getId();
 					pyramidParameter = warehouse.getRegularPyramidParameter(id);
-					result = volume == pyramidParameter.getSideFacesArea();
-					return result;
+					double pyramidVolume = pyramidParameter.getVolume();
+					result = volumeMin <= pyramidVolume & pyramidVolume <= volumeMax;
 				} catch (FiguresException e) {
 					logger.log(Level.ERROR, "Can not get figure by id: {}", id, e);
 				}
@@ -44,7 +66,7 @@ public class VolumeSpecification implements Specification {
 				logger.log(Level.ERROR, "No such action for figure: {}", className);
 				break;
 		}
-		return false;
+		return result;
 	}
 	
 }

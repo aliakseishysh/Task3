@@ -1,5 +1,8 @@
-package by.alekseyshysh.task3.reader;
+package by.alekseyshysh.task3.reader.impl;
 
+import java.io.File;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,6 +11,7 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import by.alekseyshysh.task3.exception.FiguresException;
+import by.alekseyshysh.task3.reader.FigureReader;
 import by.alekseyshysh.task3.reader.impl.FigureReaderImpl;
 
 public class ShapeReaderTest {
@@ -15,9 +19,10 @@ public class ShapeReaderTest {
 	private FigureReader figureReader = new FigureReaderImpl();
 
 	@Test
-	public void readAllCorrectLinesTest() throws FiguresException {
-		Path path = figureReader.createPathFromRelative("/data/data.txt");
-		List<String> actualList = figureReader.readAllCorrectLines(path);
+	public void readAllCorrectLinesTest() throws FiguresException, URISyntaxException {
+		URI uri = getClass().getResource("/data/data.txt").toURI();
+		String absolutePath = new File(uri).getAbsolutePath();
+		List<String> actualList = figureReader.readAllCorrectLines(absolutePath);
 		List<String> expectedList = new ArrayList<String>() {
 			{
 				add("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0");

@@ -16,4 +16,12 @@ public class NameSpecification implements Specification {
 		boolean result = abstractFigure.getName().equals(name);
 		return result;
 	}
+
+	/**
+	 * name does not stored in warehouse
+	 */
+	@Override
+	public boolean specifyFromWarehouse(AbstractFigure abstractFigure) {
+		return specify(abstractFigure);
+	}
 }

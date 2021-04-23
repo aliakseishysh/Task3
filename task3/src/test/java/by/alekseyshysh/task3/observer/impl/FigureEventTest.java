@@ -1,4 +1,4 @@
-package by.alekseyshysh.task3.observer;
+package by.alekseyshysh.task3.observer.impl;
 
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -9,8 +9,8 @@ import by.alekseyshysh.task3.entity.RegularPyramidParameter;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.impl.RegularPyramidObserverImpl;
-import by.alekseyshysh.task3.service.PyramidCalculationService;
-import by.alekseyshysh.task3.service.impl.PyramidCalculationServiceImpl;
+import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
+import by.alekseyshysh.task3.service.impl.RegularPyramidCalculationServiceImpl;
 
 public class FigureEventTest {
 
@@ -20,7 +20,7 @@ public class FigureEventTest {
 		pyramid.attach(new RegularPyramidObserverImpl());
 		Warehouse warehouse = Warehouse.getInstance();
 		long id = pyramid.getId();
-		PyramidCalculationService calculation = new PyramidCalculationServiceImpl();
+		RegularPyramidCalculationService calculation = new RegularPyramidCalculationServiceImpl();
 		double perimeter = calculation.calculatePerimeter(pyramid);
 		double surfaceArea = calculation.calculateSurfaceArea(pyramid);
 		double volume = calculation.calculateVolume(pyramid);

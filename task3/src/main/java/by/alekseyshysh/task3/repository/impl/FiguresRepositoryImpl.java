@@ -2,7 +2,6 @@ package by.alekseyshysh.task3.repository.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.function.Predicate;
@@ -23,7 +22,7 @@ public class FiguresRepositoryImpl implements FiguresRepository {
  	public static FiguresRepository getInstance() {
  		return instance;
  	}
- 	
+
  	public int size() {
  		return figures.size();
  	}
@@ -56,10 +55,11 @@ public class FiguresRepositoryImpl implements FiguresRepository {
 		figures.clear();
 	}
 
+	// TODO get copy of figure
 	public AbstractFigure get(int index) {
 		return figures.get(index);
 	}
-
+	// TODO set copy of figure
 	public AbstractFigure set(int index, AbstractFigure figure) {
 		return figures.set(index, figure);
 	}
