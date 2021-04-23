@@ -54,7 +54,7 @@ public class RegularPolygon extends AbstractFigure {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((center == null) ? 0 : center.hashCode());
 		result = prime * result + sideCount;
 		long temp;
@@ -63,13 +63,17 @@ public class RegularPolygon extends AbstractFigure {
 		return result;
 	}
 
-	// TODO create normal null check
+
+
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null || getClass() != obj.getClass()) {
+		if (!super.equals(obj)) {
+			return false;
+		}
+		if (getClass() != obj.getClass()) {
 			return false;
 		}
 		RegularPolygon other = (RegularPolygon) obj;
@@ -77,7 +81,13 @@ public class RegularPolygon extends AbstractFigure {
 			if (other.center != null) {
 				return false;
 			}
-		} else if (!center.equals(other.center) || sideCount != other.sideCount || sideLength != other.sideLength) {
+		} else if (!center.equals(other.center)) {
+			return false;
+		}
+		if (sideCount != other.sideCount) {
+			return false;
+		}
+		if (Double.doubleToLongBits(sideLength) != Double.doubleToLongBits(other.sideLength)) {
 			return false;
 		}
 		return true;
@@ -85,14 +95,17 @@ public class RegularPolygon extends AbstractFigure {
 
 	@Override
 	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder("RegularPolygon [center=");
-		stringBuilder.append(center);
-		stringBuilder.append(", sideCount=");
-		stringBuilder.append(sideCount);
-		stringBuilder.append(", sideLength=");
-		stringBuilder.append(sideLength);
-		stringBuilder.append("]");
-		String result = stringBuilder.toString();
-		return result;
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.toString());
+		builder.append("RegularPolygon [center=");
+		builder.append(center);
+		builder.append(", sideCount=");
+		builder.append(sideCount);
+		builder.append(", sideLength=");
+		builder.append(sideLength);
+		builder.append("]");
+		return builder.toString();
 	}
+
+
 }

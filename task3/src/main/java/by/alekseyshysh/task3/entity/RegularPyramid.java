@@ -41,7 +41,7 @@ public class RegularPyramid extends AbstractFigure {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		result = prime * result + ((base == null) ? 0 : base.hashCode());
 		long temp;
 		temp = Double.doubleToLongBits(height);
@@ -54,27 +54,34 @@ public class RegularPyramid extends AbstractFigure {
 		if (this == obj) {
 			return true;
 		}
-		if (obj == null || getClass() != obj.getClass()) {
+		if (!super.equals(obj)) {
 			return false;
 		}
-
+		if (getClass() != obj.getClass()) {
+			return false;
+		}
 		RegularPyramid other = (RegularPyramid) obj;
-		if (base == null && other.base != null) {
+		if (base == null || Double.doubleToLongBits(height) != Double.doubleToLongBits(other.height)) {
+			if (other.base != null) {
+				return false;
+			}
+		} else if (!base.equals(other.base)) {
 			return false;
 		}
-
-		return base != null && base.equals(other.base)
-				&& height == other.height;
+		return true;
 	}
 
 	@Override
 	public String toString() {
-		StringBuilder stringBuilder = new StringBuilder("RegularPyramid [base=");
-		stringBuilder.append(base);
-		stringBuilder.append(", height=");
-		stringBuilder.append(height);
-		stringBuilder.append("]");
-		String result = stringBuilder.toString();
-		return result;
+		StringBuilder builder = new StringBuilder();
+		builder.append(super.toString());
+		builder.append("RegularPyramid [base=");
+		builder.append(base);
+		builder.append(", height=");
+		builder.append(height);
+		builder.append("]");
+		return builder.toString();
 	}
+
+
 }

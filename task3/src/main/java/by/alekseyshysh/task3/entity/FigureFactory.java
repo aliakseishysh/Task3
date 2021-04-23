@@ -1,5 +1,7 @@
 package by.alekseyshysh.task3.entity;
 
+import java.util.Map;
+
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.validator.FigureShapeValidator;
 
@@ -17,13 +19,51 @@ public class FigureFactory {
 		switch (figureInfo[0]) {
 		case ("RegularPyramid"):
 			String[] regularPyramidInfo = figureInfo[1].split(SEMICOLON);
-		return createRegularPyramid(regularPyramidInfo);
+			return createRegularPyramid(regularPyramidInfo);
 		case ("RegularPolygon"):
 			String[] polygonInfo = figureInfo[1].split(SEMICOLON);
 			return createRegularPolygon(polygonInfo);
 		default:
 			throw new FiguresException("No such figure: " + line);
 		}
+	}
+
+	// TODO null reference or multiple return?
+	public static AbstractFigure newInstance(Map parameters) throws FiguresException {
+		AbstractFigure figure = null;
+		String figureName = parameters.get("figureName").toString();
+		switch (figureName) {
+		case ("RegularPyramid"):
+			createRegularPyramid(
+					Double.valueOf(parameters.get("regularPolygonPointX").toString()), 
+					Double.valueOf(parameters.get("regularPolygonPointY").toString()),
+					Double.valueOf(parameters.get("regularPolygonPointZ").toString()),
+					Integer.valueOf(parameters.get("regularPolygonsidesCount").toString()),
+					Double.valueOf(parameters.get("regularPolygonsideLength").toString()),
+					Double.valueOf(parameters.get("regularPyramidHeight").toString())
+					);
+			break;
+		case ("RegularPolygon"):
+			createRegularPolygon(
+					Double.valueOf(parameters.get("regularPolygonPointX").toString()), 
+					Double.valueOf(parameters.get("regularPolygonPointY").toString()),
+					Double.valueOf(parameters.get("regularPolygonPointZ").toString()),
+					Integer.valueOf(parameters.get("regularPolygonsidesCount").toString()),
+					Double.valueOf(parameters.get("regularPolygonsideLength").toString())
+					);
+			break;
+		default:
+			throw new FiguresException("No such figure: " + figureName);
+		}
+		return figure;
+	}
+	
+	private static AbstractFigure createRegularPolygon(double x, double y, double z, int sidesCount, double sideLength) {
+		return new RegularPolygon(new Point(x,y,z), sidesCount, sideLength);
+	}
+	
+	private static AbstractFigure createRegularPyramid(double x, double y, double z, int sidesCount, double sideLength, double height) {
+		return new RegularPyramid(new RegularPolygon(new Point(x,y,z), sidesCount, sideLength), height);
 	}
 
 	private static AbstractFigure createRegularPolygon(String[] polygonInfo) {

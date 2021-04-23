@@ -37,7 +37,7 @@ public class RegularPolygonParameter {
 	@Override
 	public int hashCode() {
 		final int prime = 31;
-		int result = 1;
+		int result = super.hashCode();
 		long temp;
 		temp = Double.doubleToLongBits(area);
 		result = prime * result + (int) (temp ^ (temp >>> 32));
