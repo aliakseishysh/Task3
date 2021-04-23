@@ -47,7 +47,7 @@ public abstract class AbstractFigure implements FigureObservable {
 	}
 
 	public void setObservers(List<FigureObserver> figureObservers) {
-		figureObservers = figureObservers;
+		this.figureObservers = figureObservers;
 	}
 
 	public void attach(FigureObserverImpl observer) {
