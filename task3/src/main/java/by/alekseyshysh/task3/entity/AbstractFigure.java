@@ -16,7 +16,7 @@ public abstract class AbstractFigure implements FigureObservable {
 	private List<FigureObserver> figureObservers = new ArrayList<>();
 	
 	protected AbstractFigure() {
-		this.id = IdGenerator.generateNextId();
+		//this.id = IdGenerator.generateNextId();
 	}
 	
 	protected AbstractFigure(String name) {
@@ -64,6 +64,7 @@ public abstract class AbstractFigure implements FigureObservable {
 		}
 	}
 
+	// TODO should i use id and name in hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;

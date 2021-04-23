@@ -6,18 +6,11 @@ public class RegularPyramid extends AbstractFigure {
 	private double height;
 
 	public RegularPyramid() {
-		super();
 	}
 
 	public RegularPyramid(RegularPolygon base, double height) {
-		super(RegularPyramid.class.getName());
 		this.base = base;
 		this.height = height;
-	}
-
-	// TODO remove this
-	public Point getCenter() {
-		return base.getCenter();
 	}
 
 	public RegularPolygon getBase() {

@@ -3,27 +3,39 @@ package by.alekseyshysh.task3.entity;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import by.alekseyshysh.task3.entity.FigureFactory;
-import by.alekseyshysh.task3.entity.Point;
-import by.alekseyshysh.task3.entity.RegularPolygon;
-import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.exception.FiguresException;
-import by.alekseyshysh.task3.reader.FigureReader;
-import by.alekseyshysh.task3.reader.impl.FigureReaderImpl;
+import by.alekseyshysh.task3.parser.FigureParser;
+import by.alekseyshysh.task3.parser.impl.FigureParameter;
+import by.alekseyshysh.task3.parser.impl.FigureParserImpl;
+
+/**
+ * You should run all test together in this class because of the static IdGenerator 
+ * It gives you 
+ * @author alekseyshysh
+ *
+ */
 
 public class FigureFactoryTest {
 
 	@Test
-	public void factoryRegularPyramidTest() throws FiguresException {
-		RegularPyramid expected = new RegularPyramid(new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0), 5.0);
-		RegularPyramid actual = (RegularPyramid) FigureFactory.newInstance("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0");
+	public void factoryRegularPolygonTest() throws FiguresException {
+		RegularPolygon expected = new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0);
+		expected.setId(1);
+		expected.setName("RegularPolygon");
+		FigureParser parser = new FigureParserImpl();
+		FigureParameter figureParameter = parser.createParameters("RegularPolygon:0.0,0.0,0.0;4;1.0"); 
+		RegularPolygon actual = (RegularPolygon) FigureFactory.newInstance(figureParameter);
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 	
 	@Test
-	public void factoryRegularPolygonTest() throws FiguresException {
-		RegularPolygon expected = new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0);
-		RegularPolygon actual = (RegularPolygon) FigureFactory.newInstance("RegularPolygon:0.0,0.0,0.0;4;1.0");
+	public void factoryRegularPyramidTest() throws FiguresException {
+		RegularPyramid expected = new RegularPyramid(new RegularPolygon(new Point(0.0, 0.0, 0.0), 4, 1.0), 5.0);
+		expected.setId(2);
+		expected.setName("RegularPyramid");
+		FigureParser parser = new FigureParserImpl();
+		FigureParameter figureParameter = parser.createParameters("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0"); 
+		RegularPyramid actual = (RegularPyramid) FigureFactory.newInstance(figureParameter);
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 }

@@ -10,7 +10,7 @@ public class RegularPyramidConfirmationServiceImpl implements RegularPyramidConf
 	public boolean confirmPyramidBaseOnCordinatePlane(RegularPyramid pyramid) {
 		boolean result = false;
 		if (pyramid != null) {
-			Point point = pyramid.getCenter();
+			Point point = pyramid.getBase().getCenter();
 			if (point.getX() == 0 || point.getY() == 0 || point.getZ() == 0) {
 				result = true;
 			}

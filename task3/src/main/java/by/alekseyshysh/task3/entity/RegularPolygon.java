@@ -7,11 +7,9 @@ public class RegularPolygon extends AbstractFigure {
 	private double sideLength;
 
 	public RegularPolygon() {
-		super();
 	}
 
 	public RegularPolygon(Point center, int sideCount, double sideLength) {
-		super(RegularPolygon.class.getName());
 		this.center = center;
 		this.sideCount = sideCount;
 		this.sideLength = sideLength;

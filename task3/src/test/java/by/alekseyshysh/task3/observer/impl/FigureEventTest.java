@@ -8,7 +8,9 @@ import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.entity.RegularPyramidParameter;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
-import by.alekseyshysh.task3.observer.impl.RegularPyramidObserverImpl;
+import by.alekseyshysh.task3.parser.FigureParser;
+import by.alekseyshysh.task3.parser.impl.FigureParameter;
+import by.alekseyshysh.task3.parser.impl.FigureParserImpl;
 import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
 import by.alekseyshysh.task3.service.impl.RegularPyramidCalculationServiceImpl;
 
@@ -16,7 +18,9 @@ public class FigureEventTest {
 
 	@Test
 	public void figureEventTest() throws FiguresException {
-		RegularPyramid pyramid = (RegularPyramid) FigureFactory.newInstance("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0");
+		FigureParser parser = new FigureParserImpl();
+		FigureParameter figureParameter = parser.createParameters("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0"); 
+		RegularPyramid pyramid = (RegularPyramid) FigureFactory.newInstance(figureParameter);
 		pyramid.attach(new RegularPyramidObserverImpl());
 		Warehouse warehouse = Warehouse.getInstance();
 		long id = pyramid.getId();
