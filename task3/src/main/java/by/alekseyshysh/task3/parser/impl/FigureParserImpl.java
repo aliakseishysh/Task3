@@ -1,5 +1,6 @@
 package by.alekseyshysh.task3.parser.impl;
 
+import by.alekseyshysh.task3.entity.Figure;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.parser.FigureParser;
 
@@ -13,10 +14,10 @@ public class FigureParserImpl implements FigureParser {
 		FigureParameter figureParameter = new FigureParameter();
 		String[] figureInfo = figure.split(COLON);
 		switch (figureInfo[0]) {
-		case ("RegularPolygon"):
+		case (Figure.REGULAR_POLYGON):
 			setRegularPolygonParameters(figureInfo, figureParameter);
 			break;
-		case ("RegularPyramid"):
+		case (Figure.REGULAR_PYRAMID):
 			setRegularpPyramidParameters(figureInfo, figureParameter);
 			break;
 		default:
@@ -26,26 +27,26 @@ public class FigureParserImpl implements FigureParser {
 	}
 
 	private void setRegularPolygonParameters(String[] figureInfo, FigureParameter figureParameter) {
-		figureParameter.addStringParameter("figureName", figureInfo[0]);
+		figureParameter.addStringParameter(ParameterKey.FIGURE_NAME, figureInfo[0]);
 		String[] figureParameters = figureInfo[1].split(SEMICOLON);
 		String[] polygonPoint = figureParameters[0].split(COMMA);
 		double regularPolygonPointX = Double.parseDouble(polygonPoint[0]);
-		figureParameter.addDoubleParameter("regularPolygonPointX", regularPolygonPointX);
+		figureParameter.addDoubleParameter(ParameterKey.REGULAR_POLYGON_POINT_X, regularPolygonPointX);
 		double regularPolygonPointY = Double.parseDouble(polygonPoint[1]);
-		figureParameter.addDoubleParameter("regularPolygonPointY", regularPolygonPointY);
+		figureParameter.addDoubleParameter(ParameterKey.REGULAR_POLYGON_POINT_Y, regularPolygonPointY);
 		double regularPolygonPointZ = Double.parseDouble(polygonPoint[2]);
-		figureParameter.addDoubleParameter("regularPolygonPointZ", regularPolygonPointZ);
+		figureParameter.addDoubleParameter(ParameterKey.REGULAR_POLYGON_POINT_Z, regularPolygonPointZ);
 		int regularPolygonSidesCount = Integer.parseInt(figureParameters[1]);
-		figureParameter.addIntegerParameter("regularPolygonSidesCount", regularPolygonSidesCount);
+		figureParameter.addIntegerParameter(ParameterKey.REGULAR_POLYGON_SIDES_COUNT, regularPolygonSidesCount);
 		double regularPolygonSideLength = Double.parseDouble(figureParameters[2]);
-		figureParameter.addDoubleParameter("regularPolygonSideLength", regularPolygonSideLength);
+		figureParameter.addDoubleParameter(ParameterKey.REGULAR_POLYGON_SIDE_LENGTH, regularPolygonSideLength);
 	}
 	
 	private void setRegularpPyramidParameters(String[] figureInfo, FigureParameter figureParameter) {
 		setRegularPolygonParameters(figureInfo, figureParameter);
 		String[] figureParameters = figureInfo[1].split(SEMICOLON);
 		double regularPyramidHeight= Double.parseDouble(figureParameters[3]);
-		figureParameter.addDoubleParameter("regularPyramidHeight", regularPyramidHeight);
+		figureParameter.addDoubleParameter(ParameterKey.REGULAR_PYRAMID_HEIGHT, regularPyramidHeight);
 	}
 
 }

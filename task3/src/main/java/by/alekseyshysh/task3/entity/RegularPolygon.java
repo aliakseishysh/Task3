@@ -2,6 +2,7 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPolygon extends AbstractFigure {
 
+	// TODO set checks for fields?
 	private Point center;
 	private int sideCount;
 	private double sideLength;
@@ -10,24 +11,23 @@ public class RegularPolygon extends AbstractFigure {
 	}
 
 	public RegularPolygon(Point center, int sideCount, double sideLength) {
-		this.center = center;
+		this.center = new Point(center);
 		this.sideCount = sideCount;
 		this.sideLength = sideLength;
 	}
 
 	public RegularPolygon(RegularPolygon base) {
-		super(RegularPolygon.class.getName());
-		this.center = base.center;
+		this.center = new Point(base.center);
 		this.sideCount = base.sideCount;
 		this.sideLength = base.sideLength;
 	}
 
 	public Point getCenter() {
-		return center;
+		return new Point(center);
 	}
 
 	public void setCenter(Point center) {
-		this.center = center;
+		this.center = new Point(center);
 		notifyObservers();
 	}
 
@@ -60,8 +60,6 @@ public class RegularPolygon extends AbstractFigure {
 		result = prime * result + (int) (temp ^ (temp >>> 32));
 		return result;
 	}
-
-
 
 	@Override
 	public boolean equals(Object obj) {
@@ -104,6 +102,4 @@ public class RegularPolygon extends AbstractFigure {
 		builder.append("]");
 		return builder.toString();
 	}
-
-
 }

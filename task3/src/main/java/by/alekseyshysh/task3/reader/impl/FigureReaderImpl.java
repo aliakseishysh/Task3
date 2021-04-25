@@ -30,7 +30,6 @@ public class FigureReaderImpl implements FigureReader {
 	 * Method to read all correct lines with stream
 	 * 
 	 * @see #readCorrectLines()
-	 * @throws ArrayNoSuchFileException
 	 */
 	public List<String> readAllCorrectLines(String absolutePath) {
 		Path path = Paths.get(absolutePath);
@@ -47,7 +46,6 @@ public class FigureReaderImpl implements FigureReader {
 	 * @param numberOfCorrectLines number of correct lines to read from file
 	 * @param path to file
 	 * @return List<String> with correct lines after validation
-	 * @throws ArrayNoSuchFileException
 	 */
 	public List<String> readCorrectLines(int numberOfCorrectLines, String absolutePath) {
 		Path path = Paths.get(absolutePath);
@@ -77,7 +75,7 @@ public class FigureReaderImpl implements FigureReader {
 	 * Method to read all lines in the file WITHOUT ANY VALIDATION
 	 * 
 	 * @param path to file
-	 * @return String[] with all lines in the file
+	 * @return List<String> with all lines in the file
 	 */
 	public List<String> readAllLines(String absolutePath) {
 		Path path = Paths.get(absolutePath);

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class FigureParameter {
-
+	
 	private Map<String, Double> doubleParameter = new HashMap<>();
 	private Map<String, Integer> integerParameter = new HashMap<>();
 	private Map<String, String> stringParameter = new HashMap<>();

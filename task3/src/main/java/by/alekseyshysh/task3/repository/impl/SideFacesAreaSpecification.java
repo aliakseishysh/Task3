@@ -5,16 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
-import by.alekseyshysh.task3.entity.RegularPolygon;
-import by.alekseyshysh.task3.entity.RegularPolygonParameter;
+import by.alekseyshysh.task3.entity.Figure;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.entity.RegularPyramidParameter;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.Specification;
-import by.alekseyshysh.task3.service.RegularPolygonCalculationService;
 import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
-import by.alekseyshysh.task3.service.impl.RegularPolygonCalculationServiceImpl;
 import by.alekseyshysh.task3.service.impl.RegularPyramidCalculationServiceImpl;
 
 public class SideFacesAreaSpecification implements Specification {
@@ -34,7 +31,7 @@ public class SideFacesAreaSpecification implements Specification {
 		String className = figure.getClass().getSimpleName();
 		boolean result = false;
 		switch (className) {
-		case "RegularPyramid":
+		case Figure.REGULAR_PYRAMID:
 			RegularPyramid pyramid = (RegularPyramid) figure;
 			RegularPyramidCalculationService pyramidCalculation = new RegularPyramidCalculationServiceImpl();
 			double pyramidSurfaceArea = pyramidCalculation.calculateSurfaceArea(pyramid);
@@ -54,7 +51,7 @@ public class SideFacesAreaSpecification implements Specification {
 		long id = -1;
 		boolean result = false;
 		switch(className) {
-			case "RegularPyramid":
+			case Figure.REGULAR_PYRAMID:
 				RegularPyramid pyramid = (RegularPyramid) figure;
 				RegularPyramidParameter pyramidParameter;
 				try {

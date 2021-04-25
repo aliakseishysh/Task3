@@ -8,6 +8,8 @@ import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.entity.FigureFactory;
+import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.FiguresRepository;
 import by.alekseyshysh.task3.repository.Specification;
 
@@ -55,13 +57,12 @@ public class FiguresRepositoryImpl implements FiguresRepository {
 		figures.clear();
 	}
 
-	// TODO get copy of figure
-	public AbstractFigure get(int index) {
-		return figures.get(index);
+	public AbstractFigure get(int index) throws FiguresException {
+		return FigureFactory.newInstance(figures.get(index));
 	}
-	// TODO set copy of figure
-	public AbstractFigure set(int index, AbstractFigure figure) {
-		return figures.set(index, figure);
+	
+	public AbstractFigure set(int index, AbstractFigure figure) throws FiguresException {
+		return figures.set(index, FigureFactory.newInstance(figure));
 	}
 
 	public List<AbstractFigure> query(Specification specification) {

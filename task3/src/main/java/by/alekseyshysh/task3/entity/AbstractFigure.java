@@ -3,25 +3,18 @@ package by.alekseyshysh.task3.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
 import by.alekseyshysh.task3.observer.FigureObservable;
 import by.alekseyshysh.task3.observer.FigureObserver;
-import by.alekseyshysh.task3.observer.impl.FigureObserverImpl;
-import by.alekseyshysh.task3.util.IdGenerator;
 
 public abstract class AbstractFigure implements FigureObservable {
 
 	private long id;
 	private String name;
 	private List<FigureObserver> figureObservers = new ArrayList<>();
-	
+
 	protected AbstractFigure() {
-		//this.id = IdGenerator.generateNextId();
-	}
-	
-	protected AbstractFigure(String name) {
-		this.id = IdGenerator.generateNextId();
-		this.name = name;
 	}
 
 	public long getId() {
@@ -41,26 +34,39 @@ public abstract class AbstractFigure implements FigureObservable {
 		this.name = name;
 		notifyObservers();
 	}
-	
+
 	public List<FigureObserver> getObservers() {
-		return figureObservers;
+		return new ArrayList<>(figureObservers);
 	}
 
 	public void setObservers(List<FigureObserver> figureObservers) {
-		this.figureObservers = figureObservers;
+		this.figureObservers = new ArrayList<>(figureObservers);
 	}
 
-	public void attach(FigureObserverImpl observer) {
+	// TODO throw new exception or return boolean value? 
+	// simple method +
+	// you can use it without try-catch +-
+	// Or should I even perform this check? user can just check for his observer equals null 
+	public boolean attach(FigureObserver observer) {
+		if (observer == null) {
+			return false;
+		}
 		figureObservers.add(observer);
+		return true;
 	}
-	
-	public void detach(FigureObserverImpl observer) {
+
+	public boolean detach(FigureObserver observer) {
+		if (observer == null) {
+			return false;
+		}
 		figureObservers.remove(observer);
+		return true;
 	}
-	
+
+	// TODO something smells fishy
 	public void notifyObservers() {
-		for (FigureObserver figureObserver: figureObservers) {
-			figureObserver.parameterChanged(new FigureEvent(this));			
+		for (FigureObserver figureObserver : figureObservers) {
+			figureObserver.parameterChanged(new FigureEvent(this));
 		}
 	}
 
@@ -106,6 +112,5 @@ public abstract class AbstractFigure implements FigureObservable {
 		builder.append("]");
 		return builder.toString();
 	}
-	
-	
+
 }

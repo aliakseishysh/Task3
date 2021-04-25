@@ -5,15 +5,15 @@ public class RegularPolygonParameter {
 	private double area;
 	private double perimeter;
 	
-	public RegularPolygonParameter() {
+	RegularPolygonParameter() {
 	}
 	
-	public RegularPolygonParameter(double area, double perimeter) {
+	RegularPolygonParameter(double area, double perimeter) {
 		this.area = area;
 		this.perimeter = perimeter;
 	}
 	
-	public RegularPolygonParameter(RegularPolygonParameter parameter) {
+	RegularPolygonParameter(RegularPolygonParameter parameter) {
 		this.area = parameter.area;
 		this.perimeter = parameter.perimeter;
 	}
@@ -22,16 +22,8 @@ public class RegularPolygonParameter {
 		return area;
 	}
 
-	public void setArea(double area) {
-		this.area = area;
-	}
-
 	public double getPerimeter() {
 		return perimeter;
-	}
-
-	public void setPerimeter(double perimeter) {
-		this.perimeter = perimeter;
 	}
 
 	@Override
@@ -68,5 +60,13 @@ public class RegularPolygonParameter {
 		builder.append(perimeter);
 		builder.append("]");
 		return builder.toString();
+	}
+	
+	void setArea(double area) {
+		this.area = area;
+	}
+
+	void setPerimeter(double perimeter) {
+		this.perimeter = perimeter;
 	}
 }

@@ -8,10 +8,11 @@ import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
+import by.alekseyshysh.task3.observer.FigureObserver;
 import by.alekseyshysh.task3.service.RegularPolygonCalculationService;
 import by.alekseyshysh.task3.service.impl.RegularPolygonCalculationServiceImpl;
 
-public class RegularPolygonObserverImpl extends FigureObserverImpl {
+public class RegularPolygonObserverImpl implements FigureObserver {
 
 	private static Logger logger = LogManager.getRootLogger();
 	

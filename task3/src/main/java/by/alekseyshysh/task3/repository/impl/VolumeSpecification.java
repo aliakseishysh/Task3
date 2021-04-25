@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.entity.Figure;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.entity.RegularPyramidParameter;
 import by.alekseyshysh.task3.entity.Warehouse;
@@ -30,7 +31,7 @@ public class VolumeSpecification implements Specification {
 		String className = figure.getClass().getSimpleName();
 		boolean result = false;
 		switch (className) {
-		case "RegularPyramid":
+		case Figure.REGULAR_PYRAMID:
 			RegularPyramid pyramid = (RegularPyramid) figure;
 			RegularPyramidCalculationService pyramidCalculation = new RegularPyramidCalculationServiceImpl();
 			double pyramidVolume = pyramidCalculation.calculateVolume(pyramid);
@@ -50,7 +51,7 @@ public class VolumeSpecification implements Specification {
 		long id = -1;
 		boolean result = false;
 		switch(className) {
-			case "RegularPyramid":
+			case Figure.REGULAR_PYRAMID:
 				RegularPyramid pyramid = (RegularPyramid) figure;
 				RegularPyramidParameter pyramidParameter;
 				try {

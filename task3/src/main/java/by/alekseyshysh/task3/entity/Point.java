@@ -15,6 +15,12 @@ public class Point {
 		this.z = z;
 	}
 
+	public Point(Point center) {
+		this.x = center.x;
+		this.y = center.y;
+		this.z = center.z;
+	}
+
 	public double getX() {
 		return x;
 	}

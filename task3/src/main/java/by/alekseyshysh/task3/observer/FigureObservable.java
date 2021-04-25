@@ -1,12 +1,10 @@
 package by.alekseyshysh.task3.observer;
 
-import by.alekseyshysh.task3.observer.impl.FigureObserverImpl;
-
 public interface FigureObservable {
 
-	void attach(FigureObserverImpl observer);
+	boolean attach(FigureObserver observer);
 	
-	void detach(FigureObserverImpl observer);
+	boolean detach(FigureObserver observer);
 	
 	void notifyObservers();
 	

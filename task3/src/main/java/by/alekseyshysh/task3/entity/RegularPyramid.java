@@ -2,6 +2,7 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPyramid extends AbstractFigure {
 
+	// set checks for fields?
 	private RegularPolygon base;
 	private double height;
 
@@ -9,7 +10,7 @@ public class RegularPyramid extends AbstractFigure {
 	}
 
 	public RegularPyramid(RegularPolygon base, double height) {
-		this.base = base;
+		this.base = new RegularPolygon(base);
 		this.height = height;
 	}
 

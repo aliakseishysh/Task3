@@ -5,6 +5,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.entity.Figure;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPolygonParameter;
 import by.alekseyshysh.task3.entity.RegularPyramid;
@@ -34,13 +35,13 @@ public class PerimeterSpecification implements Specification {
 		String className = figure.getClass().getSimpleName();
 		boolean result = false;
 		switch (className) {
-		case "RegularPolygon":
+		case Figure.REGULAR_POLYGON:
 			RegularPolygon polygon = (RegularPolygon) figure;
 			RegularPolygonCalculationService calculation = new RegularPolygonCalculationServiceImpl();
 			double calculatedPolygonPerimeter = calculation.calculatePerimeter(polygon);
 			result = minPerimeter <= calculatedPolygonPerimeter & calculatedPolygonPerimeter <= maxPerimeter;
 			break;
-		case "RegularPyramid":
+		case Figure.REGULAR_PYRAMID:
 			RegularPyramid pyramid = (RegularPyramid) figure;
 			RegularPyramidCalculationService pyramidCalculation = new RegularPyramidCalculationServiceImpl();
 			double calculatedPyramidPerimeter = pyramidCalculation.calculatePerimeter(pyramid);
@@ -60,7 +61,7 @@ public class PerimeterSpecification implements Specification {
 		long id = -1;
 		boolean result = false;
 		switch (className) {
-		case "RegularPolygon":
+		case Figure.REGULAR_POLYGON:
 			RegularPolygon polygon = (RegularPolygon) figure;
 			RegularPolygonParameter polygonParameter;
 			try {
@@ -72,7 +73,7 @@ public class PerimeterSpecification implements Specification {
 				logger.log(Level.ERROR, "Can not get figure by id: {}", id, e);
 			}
 			break;
-		case "RegularPyramid":
+		case Figure.REGULAR_PYRAMID:
 			RegularPyramid pyramid = (RegularPyramid) figure;
 			RegularPyramidParameter pyramidParameter;
 			try {

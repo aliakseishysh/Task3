@@ -8,10 +8,11 @@ import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.entity.Warehouse;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
+import by.alekseyshysh.task3.observer.FigureObserver;
 import by.alekseyshysh.task3.service.RegularPyramidCalculationService;
 import by.alekseyshysh.task3.service.impl.RegularPyramidCalculationServiceImpl;
 
-public class RegularPyramidObserverImpl extends FigureObserverImpl {
+public class RegularPyramidObserverImpl implements FigureObserver {
 
 	private static Logger logger = LogManager.getRootLogger();
 	

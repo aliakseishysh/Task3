@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.exception.FiguresException;
 
 public interface FiguresRepository {
 
@@ -25,9 +26,9 @@ public interface FiguresRepository {
 	
 	void clear();
 	
-	AbstractFigure get(int index);
+	AbstractFigure get(int index) throws FiguresException;
 	
-	AbstractFigure set(int index, AbstractFigure figure);
+	AbstractFigure set(int index, AbstractFigure figure) throws FiguresException;
 	
 	List<AbstractFigure> query(Specification specification);
 	

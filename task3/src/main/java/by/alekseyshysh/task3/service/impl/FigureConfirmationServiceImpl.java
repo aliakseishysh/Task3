@@ -5,12 +5,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
+import by.alekseyshysh.task3.entity.Figure;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
-import by.alekseyshysh.task3.service.RegularFigureConfirmationService;
+import by.alekseyshysh.task3.service.FigureConfirmationService;
 import by.alekseyshysh.task3.validator.FigureShapeValidator;
 
-public class RegularFigureConfirmationServiceImpl implements RegularFigureConfirmationService{
+public class FigureConfirmationServiceImpl implements FigureConfirmationService{
 
 	private static Logger logger = LogManager.getRootLogger();
 
@@ -18,9 +19,9 @@ public class RegularFigureConfirmationServiceImpl implements RegularFigureConfir
 	public boolean confirmShapeType(AbstractFigure abstractFigure, String figureName) {
 		boolean result = false;
 		if (abstractFigure != null) {
-			String className = abstractFigure.getClass().getName();
+			String className = abstractFigure.getClass().getSimpleName();
 			switch (className) {
-			case ("RegularPyramid"):
+			case (Figure.REGULAR_PYRAMID):
 				if (className.equals(figureName)) {
 					RegularPyramid pyramid = (RegularPyramid) abstractFigure;
 					RegularPolygon base = pyramid.getBase();
@@ -28,7 +29,7 @@ public class RegularFigureConfirmationServiceImpl implements RegularFigureConfir
 					result = FigureShapeValidator.isRegularPyramidCorrect(base, height);
 				}
 				break;
-			case ("RegularPolygon"):
+			case (Figure.REGULAR_POLYGON):
 				break;
 			default:
 				logger.log(Level.DEBUG, "No such figure: {}", className);

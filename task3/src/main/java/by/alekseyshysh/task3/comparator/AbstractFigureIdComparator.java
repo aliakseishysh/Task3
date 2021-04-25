@@ -8,12 +8,13 @@ public class AbstractFigureIdComparator implements Comparator<AbstractFigure> {
 
 	@Override
 	public int compare(AbstractFigure figure1, AbstractFigure figure2) {
+		int result = 0;
 		if (figure1.getId() > figure2.getId()) {
-			return 1;
+			result = 1;
 		} else if (figure1.getId() < figure2.getId()) {
-			return -1;
+			result = -1;
 		}
-		return 0;
+		return result;
 	}
 
 }

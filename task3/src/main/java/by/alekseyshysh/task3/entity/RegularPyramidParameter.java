@@ -2,6 +2,7 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPyramidParameter {
 
+	// set checks for fields?
 	private double perimeter;
 	private double surfaceArea;
 	private double volume;
