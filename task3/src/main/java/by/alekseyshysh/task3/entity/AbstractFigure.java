@@ -3,6 +3,10 @@ package by.alekseyshysh.task3.entity;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
 import by.alekseyshysh.task3.observer.FigureObservable;
@@ -10,6 +14,7 @@ import by.alekseyshysh.task3.observer.FigureObserver;
 
 public abstract class AbstractFigure implements FigureObservable {
 
+	private static Logger logger = LogManager.getRootLogger();
 	private long id;
 	private String name;
 	private List<FigureObserver> figureObservers = new ArrayList<>();
@@ -67,6 +72,27 @@ public abstract class AbstractFigure implements FigureObservable {
 	public void notifyObservers() {
 		for (FigureObserver figureObserver : figureObservers) {
 			figureObserver.parameterChanged(new FigureEvent(this));
+		}
+	}
+	
+	// TODO it's ok?
+	public AbstractFigure copy() throws FiguresException {
+		AbstractFigure newFigure = null;
+		String figureName = this.getName();
+		try {
+			AbstractFigureFactory factory = new PlanimetricFigureFactory(); 
+			newFigure = factory.newInstance(this);
+			return newFigure;
+		} catch (FiguresException e) {
+			logger.log(Level.INFO, "Figure: {} is not planimetric", figureName);
+		}
+		try {
+			AbstractFigureFactory factory = new StereometricFigureFactory(); 
+			newFigure = factory.newInstance(this);
+			return newFigure;
+		} catch (FiguresException e) {
+			logger.log(Level.INFO, "Figure: {} is not stereometric", figureName);
+			throw new FiguresException("No such figure" + figureName);
 		}
 	}
 

@@ -7,14 +7,17 @@ import java.util.List;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import by.alekseyshysh.task3.entity.AbstractFigure;
-import by.alekseyshysh.task3.entity.FigureFactory;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.FiguresRepository;
 import by.alekseyshysh.task3.repository.Specification;
 
 public class FiguresRepositoryImpl implements FiguresRepository {
 	
+	private static Logger logger = LogManager.getRootLogger();
 	private static final FiguresRepository instance = new FiguresRepositoryImpl();
  	private final List<AbstractFigure> figures = new ArrayList<>();
  	
@@ -37,12 +40,22 @@ public class FiguresRepositoryImpl implements FiguresRepository {
  		return figures.contains(figure);
  	}
 
-	public boolean add(AbstractFigure figure) {
-		return figures.add(figure);
+	public boolean add(AbstractFigure figure) throws FiguresException {
+		return figures.add(figure.copy());
 	}
 
-	public boolean addAll(Collection<? extends AbstractFigure> collection) {
-		return figures.addAll(collection);
+	public boolean addAll(Collection<? extends AbstractFigure> collection) throws FiguresException {
+		List<AbstractFigure> newList = new ArrayList<>();
+		boolean result = true;
+		try {
+			for (AbstractFigure figure: collection) {
+				newList.add(figure.copy());
+			}
+			figures.addAll(newList);
+		} catch (FiguresException e) {
+			result = false;
+		}
+		return result;
 	}
 
 	public boolean remove(AbstractFigure figure) {
@@ -58,28 +71,28 @@ public class FiguresRepositoryImpl implements FiguresRepository {
 	}
 
 	public AbstractFigure get(int index) throws FiguresException {
-		return FigureFactory.newInstance(figures.get(index));
-	}
-	
-	public AbstractFigure set(int index, AbstractFigure figure) throws FiguresException {
-		return figures.set(index, FigureFactory.newInstance(figure));
+		return figures.get(index).copy();
 	}
 
-	public List<AbstractFigure> query(Specification specification) {
+	public AbstractFigure set(int index, AbstractFigure figure) throws FiguresException {
+		return figures.set(index, figure.copy());
+	}
+
+	public List<AbstractFigure> query(Specification specification) throws FiguresException {
 		List<AbstractFigure> list = new ArrayList<>();
 		for (AbstractFigure figure : figures) {
 			if (specification.specify(figure)) {
-				list.add(figure);
+				list.add(figure.copy());
 			}
 		}
 		return list;
 	}
 
-	public List<AbstractFigure> query(Predicate<AbstractFigure> specification) {
+	public List<AbstractFigure> query(Predicate<AbstractFigure> specification) throws FiguresException {
 		List<AbstractFigure> list = new ArrayList<>();
 		for (AbstractFigure figure : figures) {
 			if (specification.test(figure)) {
-				list.add(figure);
+				list.add(figure.copy());
 			}
 		}
 		return list;

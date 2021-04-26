@@ -16,9 +16,9 @@ public interface FiguresRepository {
 	
 	boolean contains(AbstractFigure figure);
 	
-	boolean add(AbstractFigure figure);
+	boolean add(AbstractFigure figure) throws FiguresException;
 	
-	boolean addAll(Collection<? extends AbstractFigure> collection);
+	boolean addAll(Collection<? extends AbstractFigure> collection) throws FiguresException;
 	
 	boolean remove(AbstractFigure figure);
 	
@@ -30,9 +30,9 @@ public interface FiguresRepository {
 	
 	AbstractFigure set(int index, AbstractFigure figure) throws FiguresException;
 	
-	List<AbstractFigure> query(Specification specification);
+	List<AbstractFigure> query(Specification specification) throws FiguresException;
 	
-	List<AbstractFigure> query(Predicate<AbstractFigure> specification);
+	List<AbstractFigure> query(Predicate<AbstractFigure> specification) throws FiguresException;
 	
 	List<AbstractFigure> queryStream(Specification specification);
 	

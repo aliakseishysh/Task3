@@ -23,8 +23,9 @@ public class FigureFactoryTest {
 		expected.setId(1);
 		expected.setName("RegularPolygon");
 		FigureParser parser = new FigureParserImpl();
-		FigureParameter figureParameter = parser.createParameters("RegularPolygon:0.0,0.0,0.0;4;1.0"); 
-		RegularPolygon actual = (RegularPolygon) FigureFactory.newInstance(figureParameter);
+		FigureParameter figureParameter = parser.createParameters("RegularPolygon:0.0,0.0,0.0;4;1.0");
+		AbstractFigureFactory factory = new PlanimetricFigureFactory();
+		RegularPolygon actual = (RegularPolygon) factory.newInstance(figureParameter);
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 	
@@ -35,7 +36,8 @@ public class FigureFactoryTest {
 		expected.setName("RegularPyramid");
 		FigureParser parser = new FigureParserImpl();
 		FigureParameter figureParameter = parser.createParameters("RegularPyramid:0.0,0.0,0.0;4;1.0;5.0"); 
-		RegularPyramid actual = (RegularPyramid) FigureFactory.newInstance(figureParameter);
+		AbstractFigureFactory factory = new StereometricFigureFactory();
+		RegularPyramid actual = (RegularPyramid) factory.newInstance(figureParameter);
 		Assert.assertEquals(expected.equals(actual), true);
 	}
 }

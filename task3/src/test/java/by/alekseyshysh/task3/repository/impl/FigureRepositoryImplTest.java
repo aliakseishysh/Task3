@@ -12,6 +12,7 @@ import by.alekseyshysh.task3.entity.AbstractFigure;
 import by.alekseyshysh.task3.entity.Point;
 import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
+import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.FiguresRepository;
 
 public class FigureRepositoryImplTest {
@@ -40,7 +41,7 @@ public class FigureRepositoryImplTest {
 	}
 
 	@BeforeTest
-	public void repositorySetup() {
+	public void repositorySetup() throws FiguresException {
 		repository.clear();
 		repository.add(polygon1);
 		repository.add(pyramid1);
