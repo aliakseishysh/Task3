@@ -66,7 +66,6 @@ public abstract class AbstractFigure implements FigureObservable, Cloneable {
 		AbstractFigure abstractFigure = null;
 		try {
 			abstractFigure = (AbstractFigure) super.clone();
-			abstractFigure.figureObservers = new ArrayList<>(figureObservers);
 		} catch (CloneNotSupportedException e) {
 			logger.log(Level.ERROR, "clone not supported", e);
 		}

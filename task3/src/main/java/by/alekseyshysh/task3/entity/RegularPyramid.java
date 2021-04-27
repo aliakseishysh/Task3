@@ -34,7 +34,7 @@ public class RegularPyramid extends AbstractFigure {
 	@Override
 	public RegularPyramid clone() {
 		RegularPyramid copy = (RegularPyramid) super.clone();
-		copy.base = base.clone();
+		copy.base = getBase();
 		return copy;
 	}
 
