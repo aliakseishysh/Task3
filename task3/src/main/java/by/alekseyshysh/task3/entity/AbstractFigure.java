@@ -7,12 +7,11 @@ import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.observer.FigureEvent;
 import by.alekseyshysh.task3.observer.FigureObservable;
 import by.alekseyshysh.task3.observer.FigureObserver;
 
-public abstract class AbstractFigure implements FigureObservable {
+public abstract class AbstractFigure implements FigureObservable, Cloneable {
 
 	private static Logger logger = LogManager.getRootLogger();
 	private long id;
@@ -40,18 +39,6 @@ public abstract class AbstractFigure implements FigureObservable {
 		notifyObservers();
 	}
 
-	public List<FigureObserver> getObservers() {
-		return new ArrayList<>(figureObservers);
-	}
-
-	public void setObservers(List<FigureObserver> figureObservers) {
-		this.figureObservers = new ArrayList<>(figureObservers);
-	}
-
-	// TODO throw new exception or return boolean value? 
-	// simple method +
-	// you can use it without try-catch +-
-	// Or should I even perform this check? user can just check for his observer equals null 
 	public boolean attach(FigureObserver observer) {
 		if (observer == null) {
 			return false;
@@ -68,39 +55,29 @@ public abstract class AbstractFigure implements FigureObservable {
 		return true;
 	}
 
-	// TODO something smells fishy
 	public void notifyObservers() {
 		for (FigureObserver figureObserver : figureObservers) {
 			figureObserver.parameterChanged(new FigureEvent(this));
 		}
 	}
-	
-	// TODO it's ok?
-	public AbstractFigure copy() throws FiguresException {
-		AbstractFigure newFigure = null;
-		String figureName = this.getName();
+
+	@Override
+	public AbstractFigure clone() {
+		AbstractFigure abstractFigure = null;
 		try {
-			AbstractFigureFactory factory = new PlanimetricFigureFactory(); 
-			newFigure = factory.newInstance(this);
-			return newFigure;
-		} catch (FiguresException e) {
-			logger.log(Level.INFO, "Figure: {} is not planimetric", figureName);
+			abstractFigure = (AbstractFigure) super.clone();
+			abstractFigure.figureObservers = new ArrayList<>(figureObservers);
+		} catch (CloneNotSupportedException e) {
+			logger.log(Level.ERROR, "clone not supported", e);
 		}
-		try {
-			AbstractFigureFactory factory = new StereometricFigureFactory(); 
-			newFigure = factory.newInstance(this);
-			return newFigure;
-		} catch (FiguresException e) {
-			logger.log(Level.INFO, "Figure: {} is not stereometric", figureName);
-			throw new FiguresException("No such figure" + figureName);
-		}
+		return abstractFigure;
 	}
 
-	// TODO should i use id and name in hashCode and equals
 	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
+		result = prime * result + ((figureObservers == null) ? 0 : figureObservers.hashCode());
 		result = prime * result + (int) (id ^ (id >>> 32));
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
 		return result;
@@ -115,6 +92,13 @@ public abstract class AbstractFigure implements FigureObservable {
 			return false;
 		}
 		AbstractFigure other = (AbstractFigure) obj;
+		if (figureObservers == null) {
+			if (other.figureObservers != null) {
+				return false;
+			}
+		} else if (!figureObservers.equals(other.figureObservers)) {
+			return false;
+		}
 		if (id != other.id) {
 			return false;
 		}

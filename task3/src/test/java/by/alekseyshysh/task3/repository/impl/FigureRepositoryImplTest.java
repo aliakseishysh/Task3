@@ -14,6 +14,9 @@ import by.alekseyshysh.task3.entity.RegularPolygon;
 import by.alekseyshysh.task3.entity.RegularPyramid;
 import by.alekseyshysh.task3.exception.FiguresException;
 import by.alekseyshysh.task3.repository.FiguresRepository;
+import by.alekseyshysh.task3.specification.impl.IdSpecification;
+import by.alekseyshysh.task3.specification.impl.NameSpecification;
+import by.alekseyshysh.task3.specification.impl.VolumeSpecification;
 
 public class FigureRepositoryImplTest {
 
@@ -47,6 +50,19 @@ public class FigureRepositoryImplTest {
 		repository.add(pyramid1);
 		repository.add(polygon2);
 		repository.add(pyramid2);
+	}
+	
+	@Test
+	public void linkTest() {
+		FiguresRepository repository = FiguresRepositoryImpl.getInstance();
+		RegularPyramid copy = (RegularPyramid) repository.get(1);
+		RegularPyramid original = (RegularPyramid) pyramid1;
+		boolean expected = true;
+		boolean actual = original.equals(copy) 
+				&& original != copy
+				&& original.getBase() != copy.getBase()
+				&& original.getBase().getCenter() != copy.getBase().getCenter();
+		Assert.assertEquals(actual, expected);
 	}
 
 	@Test

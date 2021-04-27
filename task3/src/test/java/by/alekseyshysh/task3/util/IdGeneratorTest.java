@@ -9,7 +9,7 @@ public class IdGeneratorTest {
 	public void generateNextIdTest() {
 		long actual = IdGenerator.generateNextId();
 		actual = IdGenerator.generateNextId();
-		long expected = 2L;
+		long expected = 1L;
 		Assert.assertEquals(expected, actual);
 	}
 	

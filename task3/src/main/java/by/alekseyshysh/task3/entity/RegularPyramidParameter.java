@@ -1,8 +1,12 @@
 package by.alekseyshysh.task3.entity;
 
-public class RegularPyramidParameter {
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-	// set checks for fields?
+public class RegularPyramidParameter implements Cloneable {
+
+	private static Logger logger = LogManager.getRootLogger();
 	private double perimeter;
 	private double surfaceArea;
 	private double volume;
@@ -14,12 +18,6 @@ public class RegularPyramidParameter {
 		this.perimeter = perimeter;
 		this.surfaceArea = sideFacesArea;
 		this.volume = volume;
-	}
-
-	public RegularPyramidParameter(RegularPyramidParameter parameter) {
-		this.perimeter = parameter.perimeter;
-		this.surfaceArea = parameter.surfaceArea;
-		this.volume = parameter.volume;
 	}
 
 	public double getSideFacesArea() {
@@ -44,6 +42,17 @@ public class RegularPyramidParameter {
 
 	public void setPerimeter(double perimeter) {
 		this.perimeter = perimeter;
+	}
+
+	@Override
+	public RegularPyramidParameter clone() {
+		RegularPyramidParameter parameter = null;
+		try {
+			parameter = (RegularPyramidParameter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			logger.log(Level.ERROR, e);
+		}
+		return parameter;
 	}
 
 	@Override

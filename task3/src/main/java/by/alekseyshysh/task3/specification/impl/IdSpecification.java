@@ -1,7 +1,7 @@
-package by.alekseyshysh.task3.repository.impl;
+package by.alekseyshysh.task3.specification.impl;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
-import by.alekseyshysh.task3.repository.Specification;
+import by.alekseyshysh.task3.specification.Specification;
 
 public class IdSpecification implements Specification {
 
@@ -16,16 +16,8 @@ public class IdSpecification implements Specification {
 	@Override
 	public boolean specify(AbstractFigure abstractFigure) {
 		long currentId = abstractFigure.getId();
-		boolean result = minId <= currentId & currentId <= maxId;
+		boolean result = minId <= currentId && currentId <= maxId;
 		return result;
-	}
-
-	/**
-	 * id does not stored in warehouse
-	 */
-	@Override
-	public boolean specifyFromWarehouse(AbstractFigure abstractFigure) {
-		return specify(abstractFigure);
 	}
 	
 }

@@ -1,7 +1,12 @@
 package by.alekseyshysh.task3.entity;
 
-public class Point {
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
+public class Point implements Cloneable {
+
+	private static Logger logger = LogManager.getRootLogger();
 	private double x;
 	private double y;
 	private double z;
@@ -13,12 +18,6 @@ public class Point {
 		this.x = x;
 		this.y = y;
 		this.z = z;
-	}
-
-	public Point(Point center) {
-		this.x = center.x;
-		this.y = center.y;
-		this.z = center.z;
 	}
 
 	public double getX() {
@@ -43,6 +42,17 @@ public class Point {
 
 	public void setZ(double z) {
 		this.z = z;
+	}
+	
+	@Override
+	public Point clone() {
+		Point copy = null;
+		try {
+			copy = (Point) super.clone();
+		} catch (CloneNotSupportedException e) {
+			logger.log(Level.ERROR, "clone not supported", e);
+		}
+		return copy;
 	}
 
 	@Override

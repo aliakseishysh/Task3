@@ -33,4 +33,15 @@ public class RegularPyramidObserverImpl implements FigureObserver {
 		logger.log(Level.DEBUG, figure);
 	}
 	
+	@Override
+	public FigureObserver clone() {
+		FigureObserver observer = null;
+		try {
+			observer = (FigureObserver) super.clone();
+		} catch (CloneNotSupportedException e) {
+			logger.log(Level.ERROR, "clone not supported", e);
+		}
+		return observer;
+	}
+	
 }

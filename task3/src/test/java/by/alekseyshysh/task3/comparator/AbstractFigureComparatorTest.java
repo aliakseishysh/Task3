@@ -42,7 +42,10 @@ public class AbstractFigureComparatorTest {
 		String expected = "[1, 1, 5, 10]";
 		AbstractFigureIdComparator comparator = new AbstractFigureIdComparator();
 		List<AbstractFigure> result = Stream.of(polygon1, pyramid1, pyramid2, polygon2).sorted(comparator::compare).collect(Collectors.toList());
-		String actual = result.stream().map(AbstractFigure::getId).collect(Collectors.toList()).toString();
+		String actual = result.stream()
+				.map(AbstractFigure::getId)
+				.collect(Collectors.toList())
+				.toString();
 		Assert.assertEquals(actual, expected);
 	}
 	
@@ -51,7 +54,10 @@ public class AbstractFigureComparatorTest {
 		String expected = "[P1, P2, Pol, Pyr]";
 		AbstractFigureNameComparator comparator = new AbstractFigureNameComparator();
 		List<AbstractFigure> result = Stream.of(polygon1, pyramid1, pyramid2, polygon2).sorted(comparator::compare).collect(Collectors.toList());
-		String actual = result.stream().map(AbstractFigure::getName).collect(Collectors.toList()).toString();
+		String actual = result.stream()
+				.map(AbstractFigure::getName)
+				.collect(Collectors.toList())
+				.toString();
 		Assert.assertEquals(actual, expected);
 	}
 	
@@ -59,8 +65,13 @@ public class AbstractFigureComparatorTest {
 	public void idThenNameTest() {
 		String expected = "[P1, P2, Pyr, Pol]";
 		AbstractFigureIdThenNameComparator comparator = new AbstractFigureIdThenNameComparator();
-		List<AbstractFigure> result = Stream.of(polygon1, pyramid1, pyramid2, polygon2).sorted(comparator::compare).collect(Collectors.toList());
-		String actual = result.stream().map(AbstractFigure::getName).collect(Collectors.toList()).toString();
+		List<AbstractFigure> result = Stream.of(polygon1, pyramid1, pyramid2, polygon2)
+				.sorted(comparator::compare)
+				.collect(Collectors.toList());
+		String actual = result.stream()
+				.map(AbstractFigure::getName)
+				.collect(Collectors.toList())
+				.toString();
 		Assert.assertEquals(actual, expected);
 	}
 

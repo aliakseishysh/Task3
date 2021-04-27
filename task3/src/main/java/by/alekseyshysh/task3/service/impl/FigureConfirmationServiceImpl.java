@@ -19,10 +19,10 @@ public class FigureConfirmationServiceImpl implements FigureConfirmationService{
 	public boolean confirmShapeType(AbstractFigure abstractFigure, String figureName) {
 		boolean result = false;
 		if (abstractFigure != null) {
-			String className = abstractFigure.getClass().getSimpleName();
-			switch (className) {
+			String abstractFigureName = abstractFigure.getName();
+			switch (abstractFigureName) {
 			case (Figure.REGULAR_PYRAMID):
-				if (className.equals(figureName)) {
+				if (abstractFigureName.equals(figureName)) {
 					RegularPyramid pyramid = (RegularPyramid) abstractFigure;
 					RegularPolygon base = pyramid.getBase();
 					double height = pyramid.getHeight();
@@ -30,9 +30,12 @@ public class FigureConfirmationServiceImpl implements FigureConfirmationService{
 				}
 				break;
 			case (Figure.REGULAR_POLYGON):
+				if (abstractFigureName.equals(figureName)) {
+					result = true;
+				}
 				break;
 			default:
-				logger.log(Level.DEBUG, "No such figure: {}", className);
+				logger.log(Level.DEBUG, "No such figure: {}", abstractFigureName);
 				break;
 			}
 		}

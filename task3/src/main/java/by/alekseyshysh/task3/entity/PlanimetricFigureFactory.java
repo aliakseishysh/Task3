@@ -5,9 +5,8 @@ import by.alekseyshysh.task3.parser.impl.FigureParameter;
 import by.alekseyshysh.task3.parser.impl.ParameterKey;
 import by.alekseyshysh.task3.util.IdGenerator;
 
-public class PlanimetricFigureFactory implements AbstractFigureFactory {
+public class PlanimetricFigureFactory implements FigureFactory {
 
-	// TODO null reference or multiple return?
 		public AbstractFigure newInstance(FigureParameter figureParameter) throws FiguresException {
 			AbstractFigure figure = null;
 			String figureName = figureParameter.getStringParameter(ParameterKey.FIGURE_NAME);
@@ -25,29 +24,6 @@ public class PlanimetricFigureFactory implements AbstractFigureFactory {
 				throw new FiguresException("No such figure: " + figureName);
 			}
 			figure.setId(IdGenerator.generateNextId());
-			figure.setName(figureName);
-			return figure;
-		}
-		
-		// TODO null reference or multiple return?
-		public AbstractFigure newInstance(AbstractFigure abstractFigure) throws FiguresException {
-			AbstractFigure figure = null;
-			String figureName = abstractFigure.getName();
-			switch (figureName) {
-			case (Figure.REGULAR_POLYGON):
-				RegularPolygon regularPolygon = (RegularPolygon) abstractFigure;
-				figure = createRegularPolygon(
-						regularPolygon.getCenter().getX(), 
-						regularPolygon.getCenter().getY(), 
-						regularPolygon.getCenter().getZ(), 
-						regularPolygon.getSideCount(),
-						regularPolygon.getSideLength()
-						);
-				break;
-			default:
-				throw new FiguresException("No such figure: " + figureName);
-			}
-			figure.setId(abstractFigure.getId());
 			figure.setName(figureName);
 			return figure;
 		}

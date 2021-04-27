@@ -1,7 +1,7 @@
-package by.alekseyshysh.task3.repository.impl;
+package by.alekseyshysh.task3.specification.impl;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
-import by.alekseyshysh.task3.repository.Specification;
+import by.alekseyshysh.task3.specification.Specification;
 
 public class NameSpecification implements Specification {
 
@@ -15,13 +15,5 @@ public class NameSpecification implements Specification {
 	public boolean specify(AbstractFigure abstractFigure) {
 		boolean result = abstractFigure.getName().equals(name);
 		return result;
-	}
-
-	/**
-	 * name does not stored in warehouse
-	 */
-	@Override
-	public boolean specifyFromWarehouse(AbstractFigure abstractFigure) {
-		return specify(abstractFigure);
 	}
 }

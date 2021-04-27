@@ -5,9 +5,8 @@ import by.alekseyshysh.task3.parser.impl.FigureParameter;
 import by.alekseyshysh.task3.parser.impl.ParameterKey;
 import by.alekseyshysh.task3.util.IdGenerator;
 
-public class StereometricFigureFactory implements AbstractFigureFactory {
+public class StereometricFigureFactory implements FigureFactory {
 
-	// TODO null reference or multiple return?
 		public AbstractFigure newInstance(FigureParameter figureParameter) throws FiguresException {
 			AbstractFigure figure = null;
 			String figureName = figureParameter.getStringParameter(ParameterKey.FIGURE_NAME);
@@ -30,33 +29,8 @@ public class StereometricFigureFactory implements AbstractFigureFactory {
 			return figure;
 		}
 		
-		// TODO null reference or multiple return?
-		public AbstractFigure newInstance(AbstractFigure abstractFigure) throws FiguresException {
-			AbstractFigure figure = null;
-			String figureName = abstractFigure.getName();
-			switch (figureName) {
-			case (Figure.REGULAR_PYRAMID):
-				RegularPyramid regularPyramid = (RegularPyramid) abstractFigure;
-				figure = createRegularPyramid(
-						regularPyramid.getBase().getCenter().getX(), 
-						regularPyramid.getBase().getCenter().getY(), 
-						regularPyramid.getBase().getCenter().getZ(), 
-						regularPyramid.getBase().getSideCount(),
-						regularPyramid.getBase().getSideLength(),
-						regularPyramid.getHeight()
-						);
-				break;
-			default:
-				throw new FiguresException("No such figure: " + figureName);
-			}
-			figure.setId(abstractFigure.getId());
-			figure.setName(figureName);
-			return figure;
-		}
-		
 		private static AbstractFigure createRegularPyramid(double x, double y, double z, int sidesCount, double sideLength, double height) {
 			return new RegularPyramid(new RegularPolygon(new Point(x,y,z), sidesCount, sideLength), height);
 		}
-		
 	
 }

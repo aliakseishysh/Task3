@@ -23,7 +23,7 @@ public class Warehouse {
 		if (parameter == null) {
 			throw new FiguresException("No such element with id: " + id);
 		}
-		return new RegularPolygonParameter(parameter);
+		return parameter.clone();
 	}
 	
 	public RegularPyramidParameter getRegularPyramidParameter(long id) throws FiguresException {
@@ -31,7 +31,7 @@ public class Warehouse {
 		if (parameter == null) {
 			throw new FiguresException("No such element with id: " + id);
 		}
-		return new RegularPyramidParameter(parameter);
+		return parameter.clone();
 	}
 
 	public void putParametersRegularPyramid(long id, double perimeter, double sideFacesArea, double volume) {

@@ -6,6 +6,11 @@ import by.alekseyshysh.task3.entity.RegularPyramid;
 
 public class RegularPyramidEvent extends EventObject {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 3120918211476588729L;
+
 	public RegularPyramidEvent(Object source) {
 		super(source);
 	}

@@ -1,7 +1,12 @@
 package by.alekseyshysh.task3.entity;
 
-public class RegularPolygonParameter {
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+public class RegularPolygonParameter implements Cloneable {
 	
+	private static Logger logger = LogManager.getRootLogger();
 	private double area;
 	private double perimeter;
 	
@@ -12,11 +17,6 @@ public class RegularPolygonParameter {
 		this.area = area;
 		this.perimeter = perimeter;
 	}
-	
-	RegularPolygonParameter(RegularPolygonParameter parameter) {
-		this.area = parameter.area;
-		this.perimeter = parameter.perimeter;
-	}
 
 	public double getArea() {
 		return area;
@@ -24,6 +24,17 @@ public class RegularPolygonParameter {
 
 	public double getPerimeter() {
 		return perimeter;
+	}
+	
+	@Override
+	public RegularPolygonParameter clone() {
+		RegularPolygonParameter parameter = null;
+		try {
+			parameter = (RegularPolygonParameter) super.clone();
+		} catch (CloneNotSupportedException e) {
+			logger.log(Level.ERROR, e);
+		}
+		return parameter;
 	}
 
 	@Override

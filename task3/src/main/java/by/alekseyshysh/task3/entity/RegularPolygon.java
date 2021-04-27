@@ -2,7 +2,6 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPolygon extends AbstractFigure {
 
-	// TODO set checks for fields?
 	private Point center;
 	private int sideCount;
 	private double sideLength;
@@ -11,23 +10,17 @@ public class RegularPolygon extends AbstractFigure {
 	}
 
 	public RegularPolygon(Point center, int sideCount, double sideLength) {
-		this.center = new Point(center);
+		this.center = center.clone();
 		this.sideCount = sideCount;
 		this.sideLength = sideLength;
 	}
 
-	public RegularPolygon(RegularPolygon base) {
-		this.center = new Point(base.center);
-		this.sideCount = base.sideCount;
-		this.sideLength = base.sideLength;
-	}
-
 	public Point getCenter() {
-		return new Point(center);
+		return center.clone();
 	}
 
 	public void setCenter(Point center) {
-		this.center = new Point(center);
+		this.center = center.clone();
 		notifyObservers();
 	}
 
@@ -47,6 +40,13 @@ public class RegularPolygon extends AbstractFigure {
 	public void setSideLength(double sideLength) {
 		this.sideLength = sideLength;
 		notifyObservers();
+	}
+	
+	@Override
+	public RegularPolygon clone() {
+		RegularPolygon copy = (RegularPolygon) super.clone();
+		copy.center = getCenter();
+		return copy;
 	}
 
 	@Override

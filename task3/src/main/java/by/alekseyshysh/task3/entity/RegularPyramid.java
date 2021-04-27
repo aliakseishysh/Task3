@@ -2,7 +2,6 @@ package by.alekseyshysh.task3.entity;
 
 public class RegularPyramid extends AbstractFigure {
 
-	// set checks for fields?
 	private RegularPolygon base;
 	private double height;
 
@@ -10,16 +9,16 @@ public class RegularPyramid extends AbstractFigure {
 	}
 
 	public RegularPyramid(RegularPolygon base, double height) {
-		this.base = new RegularPolygon(base);
+		this.base = base.clone();
 		this.height = height;
 	}
 
 	public RegularPolygon getBase() {
-		return new RegularPolygon(base);
+		return base.clone();
 	}
 
 	public void setBase(RegularPolygon base) {
-		this.base = new RegularPolygon(base);
+		this.base = base.clone();
 		notifyObservers();
 	}
 
@@ -30,6 +29,13 @@ public class RegularPyramid extends AbstractFigure {
 	public void setHeight(double height) {
 		this.height = height;
 		notifyObservers();
+	}
+	
+	@Override
+	public RegularPyramid clone() {
+		RegularPyramid copy = (RegularPyramid) super.clone();
+		copy.base = base.clone();
+		return copy;
 	}
 
 	@Override

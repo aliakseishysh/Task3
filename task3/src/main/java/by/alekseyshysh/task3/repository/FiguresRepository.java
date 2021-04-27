@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.function.Predicate;
 
 import by.alekseyshysh.task3.entity.AbstractFigure;
-import by.alekseyshysh.task3.exception.FiguresException;
+import by.alekseyshysh.task3.specification.Specification;
 
 public interface FiguresRepository {
 
@@ -16,9 +16,9 @@ public interface FiguresRepository {
 	
 	boolean contains(AbstractFigure figure);
 	
-	boolean add(AbstractFigure figure) throws FiguresException;
+	boolean add(AbstractFigure figure);
 	
-	boolean addAll(Collection<? extends AbstractFigure> collection) throws FiguresException;
+	boolean addAll(Collection<? extends AbstractFigure> collection);
 	
 	boolean remove(AbstractFigure figure);
 	
@@ -26,13 +26,13 @@ public interface FiguresRepository {
 	
 	void clear();
 	
-	AbstractFigure get(int index) throws FiguresException;
+	AbstractFigure get(int index);
 	
-	AbstractFigure set(int index, AbstractFigure figure) throws FiguresException;
+	AbstractFigure set(int index, AbstractFigure figure);
 	
-	List<AbstractFigure> query(Specification specification) throws FiguresException;
+	List<AbstractFigure> query(Specification specification);
 	
-	List<AbstractFigure> query(Predicate<AbstractFigure> specification) throws FiguresException;
+	List<AbstractFigure> query(Predicate<AbstractFigure> specification);
 	
 	List<AbstractFigure> queryStream(Specification specification);
 	
